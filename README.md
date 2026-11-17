@@ -99,8 +99,8 @@ The site is more than a résumé. It has five parts:
 No setup is needed.
 
 ```bash
-git clone https://github.com/Hemanth-55/Portfolio-Webiste.git
-cd Portfolio-Webiste
+git clone https://github.com/Hemanth-55/Portfolio-Website.git
+cd Portfolio-Website
 open index.html          # macOS. On Windows use: start index.html
 ```
 
