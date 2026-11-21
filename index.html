@@ -138,6 +138,7 @@ p strong{color:var(--text)}
 /* experience */
 .spine{position:relative;display:flex;flex-direction:column;gap:14px;padding-left:34px}
 .spine::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--cyan),var(--uv),transparent)}
+.xgrp{color:var(--cyan);letter-spacing:.16em;text-transform:uppercase;font-size:12px;margin:14px 0 -4px}.xgrp:first-child{margin-top:0}
 .xp{position:relative;padding:18px 20px;cursor:pointer;text-align:left;width:100%;display:flex;flex-direction:column;gap:6px;transition:border-color .25s,transform .25s}
 .xp::before{content:"";position:absolute;left:-30px;top:24px;width:11px;height:11px;border-radius:50%;border:2px solid var(--cyan);background:var(--void);transition:background .25s,box-shadow .25s}
 .xp:hover,.xp[aria-expanded="true"]{border-color:rgba(53,224,255,.55)}
@@ -356,44 +357,56 @@ const CONTENT = {
   portrait: "",
   headline: "Former professional cricketer building a career in sports analytics, machine learning and AI.",
   pitch: [
-    "7 years of professional cricket (Tamil Nadu Premier League, state level): I know what performance data feels like from the athlete's side.",
-    "MS in Business Analytics at Suffolk University (expected May 2027): Python, SQL, predictive modeling and machine learning.",
-    "Building sports projects now: NBA predictive modeling, computer-vision tracking concepts, and a data-driven case study from my own batting."
+    "7+ years of professional cricket (Tamil Nadu Cricket Association, Tamil Nadu Premier League): I know what performance data feels like from the athlete's side.",
+    "MS in Business Analytics at Suffolk University (expected May 2027), built on a B.E. in Computer Science: Python, SQL, Tableau and predictive modeling.",
+    "Selected for the 2026 MIT Sloan Sports Analytics Conference Mentorship Program, learning from professionals already doing the work.",
+    "Recent work: a football market-value model (R² 0.612), a rivalry-messaging experiment with fans, and a data-driven fix to my own batting (missed deliveries 20% → 7%)."
   ],
-  seeking: "Internships and roles in sports analytics, sports technology and data science, especially with NBA, MLB and NHL organizations or teams working on athlete performance.",
+  seeking: "Internships and roles in sports analytics, sports technology and data science, especially with NFL, NBA, MLB and NHL organizations or teams working on athlete performance.",
   contact: { email: "hemanthkumargopi55@gmail.com", linkedin: "https://www.linkedin.com/in/hemanthkumargopi", github: "https://github.com/Hemanth-55", resumeUrl: "" },
   story: [
     { id:"ch1", n:"I", key:"The Athlete", shape:"pitch", side:"l", h:"Before I studied performance, I lived it.",
       p:["I grew up in Chennai, where cricket is less a sport than a shared language. I chased it seriously, all the way into state-level competition with the Tamil Nadu Cricket Association and the Tamil Nadu Premier League with Dindigul Dragons.",
-         "Seven years of professional cricket taught me things no classroom could: discipline when nobody is watching, decisions made in a fraction of a second, and how to come back after a bad day. Most of all, it taught me that careers turn on small improvements."] },
+         "Seven years of professional cricket taught me things no classroom could: discipline when nobody is watching, decisions made in a fraction of a second, and how to come back after a bad day. Most of all, it taught me that careers turn on small improvements.",
+         "It also taught me to lead: keeping a squad of 15+ players pulling in one direction, especially when the pressure was highest."] },
     { id:"ch2", n:"II", key:"The Question", shape:"curve", side:"r", h:"What if we could understand why performance changes — not just whether it changes?",
       p:["During a difficult stretch with the bat, working harder wasn't fixing anything. So I sat down with my team's analyst and looked at my own game the way an analyst would: shot maps against different bowlers, video from nets and matches, where my timing held and where it broke.",
-         "The footage and the numbers pointed to something years of coaching had missed: a balance problem in my first movement. Fixing it changed my batting. It also changed what I wanted to do with my life."],
+         "The footage and the numbers pointed to something years of coaching had missed: a balance problem in my first movement. Fixing it changed my batting. It also changed what I wanted to do with my life.",
+         "From then on I worked with our analysts on the other side too: reading opponents' performance numbers and turning raw match data into plans a captain could use on the field."],
       q:"Data didn't replace the work. It told me where to put it." },
     { id:"ch3", n:"III", key:"The Transition", shape:"globe", side:"l", h:"From competing on the field to understanding the numbers behind it.",
-      p:["13.08° N, 80.27° E → 42.36° N, 71.06° W. I left Chennai for Boston to learn the craft properly: business analytics, statistics, machine learning, and the discipline of turning a messy question into a model you can trust.",
-         "Boston gave me more than a classroom. I was selected for the MIT Sloan Sports Analytics Conference Mentorship Program in 2026, and found a city that treats sport with the same seriousness I grew up with."] },
+      p:["13.08° N, 80.27° E → 42.36° N, 71.06° W. I'd already earned a degree in computer science alongside my cricket career. I left Chennai for Boston to learn the analytics craft properly: statistics, machine learning, and the discipline of turning a messy question into a model you can trust.",
+         "Boston gave me more than a classroom. In 2026 I was selected for the MIT Sloan Sports Analytics Conference Mentorship Program: a selective six-month program that pairs mentees with experienced professionals in the sports analytics industry."] },
     { id:"ch4", n:"IV", key:"The Analyst", shape:"court", side:"r", h:"Same instincts. New instruments.",
       p:["At Suffolk University I'm pursuing an MS in Business Analytics, building depth in statistics, databases, predictive analytics and machine learning.",
          "I'm also around the men's basketball program, learning a new sport from the inside and exploring how performance data can support analysis and decisions. A cricketer reading a basketball court is a useful kind of outsider: I ask the questions people stopped asking."] },
     { id:"ch5", n:"V", key:"The Builder", shape:"network", side:"l", h:"I'm not leaving sports behind. I'm building my next chapter within it.",
-      p:["Now I build: predictive models on NBA data, experiments with computer vision on practice footage, and interactive tools that make an analysis something a coach can actually use.",
+      p:["Now I build: predictive models on NBA data, football market-value models, fan experiments, and interactive tools that make an analysis something a coach can actually use. Computer vision for practice footage is next on my list.",
          "I understand sport from both sides of the screen: what the athlete feels, and what the data says. The work I want to do lives exactly where those two meet."] }
   ],
   experience: [
-    { tag:"done", tagText:"Completed", when:"2017 – 2024", title:"Professional Cricket", org:"Tamil Nadu Cricket Association · Tamil Nadu Premier League (Dindigul Dragons)",
-      p:"Seven years as a competitive athlete at state and franchise level.",
-      more:["Competed under pressure in front of selectors, crowds and cameras","Used video and shot data with team analysts to diagnose and fix my own technique","Learned teamwork, leadership and how to prepare for a specific opponent"] },
-    { tag:"now", tagText:"Current", when:"Suffolk University · Boston", title:"MS in Business Analytics", org:"Sawyer Business School · expected May 2027",
-      p:"Graduate training in the analytical toolkit behind modern decision-making.",
-      more:["Statistics, databases and SQL","Predictive analytics and machine learning","Framing business problems so a model can answer them"] },
-    { tag:"now", tagText:"Current", when:"Suffolk University", title:"Men's Basketball Program", org:"Student manager · analytics interest",
+    { grp:"Experience", tag:"now", tagText:"Current", when:"Sep 2026 – Present", title:"Graduate Fellow · Teaching Assistant", org:"Suffolk University · SAP S/4HANA",
+      p:"Guiding undergraduate and graduate students through hands-on SAP S/4HANA exercises.",
+      more:["Sales and Distribution, Materials Management, Production Planning","SAP Fiori processes and navigation","Debugging students' process errors and explaining why a step exists"] },
+    { grp:"Experience", tag:"now", tagText:"Current", when:"Jan 2026 – Present", title:"MIT Sloan Sports Analytics Conference", org:"Mentee · 2026 Mentorship Program",
+      p:"Selected for a selective six-month program pairing participants with experienced professionals in the sports analytics industry.",
+      more:["Selected for the 2026 cohort","Paired with experienced professionals in the sports analytics industry"] },
+    { grp:"Experience", tag:"now", tagText:"Current", when:"Current", title:"Men's Basketball Program", org:"Suffolk University · student manager",
       p:"Supporting the men's basketball program while exploring how performance data can inform analysis and decision-making.",
       more:["Day-to-day team support as a student manager","Learning how a college program prepares, practices and reviews","Looking for places where tracking practice data could save coaches time"] },
-    { tag:"now", tagText:"Current", when:"Suffolk University", title:"Teaching Assistant, SAP ERP", org:"Undergraduate ERP coursework",
-      p:"Teaching and supporting students through SAP ERP processes in labs and help sessions.",
-      more:["Sales and Distribution, Materials Management, Production Planning","SAP Fiori processes and navigation","Debugging students' process errors and explaining why a step exists"] },
-    { tag:"next", tagText:"Ambition", when:"Next", title:"Sports analytics & sports technology", org:"NBA · MLB · NHL · elite performance",
+    { grp:"Experience", tag:"done", tagText:"Completed", when:"Jun 2017 – Dec 2024", title:"Professional Cricketer", org:"Tamil Nadu Cricket Association · Tamil Nadu Premier League (Dindigul Dragons)",
+      p:"Seven years as a competitive athlete at state and franchise level, using data to get better.",
+      more:["Used video telemetry and spatial data (wagon wheels, heat maps) to fix my technique: missed-delivery rate down from 20% to 7%","Worked with team analysts on opponent performance KPIs, turning raw match data into tactical insights for captains","Helped lead a squad of 15+ players, matching individual strengths to team goals under high pressure"] },
+    { grp:"Experience", tag:"done", tagText:"Completed", when:"Jul 2022 – May 2023", title:"Marketing Analyst Intern", org:"Cheers Chocolates · Chennai",
+      p:"Using engagement data to shape a brand's social media strategy.",
+      more:["Analyzed engagement metrics across 3+ social platforms","Strategy changes drove a 32% increase in audience interaction within 10 months"] },
+    { grp:"Education", tag:"now", tagText:"Current", when:"Expected May 2027", title:"MS in Business Analytics", org:"Suffolk University · Sawyer Business School, Boston",
+      p:"Graduate training in the analytical toolkit behind modern decision-making.",
+      more:["Statistics, databases and SQL","Predictive analytics and machine learning","Hands-on with Python, SQL and Tableau on sports, entertainment and marketing data"] },
+    { grp:"Education", tag:"done", tagText:"Completed", when:"Nov 2021", title:"B.E. in Computer Science", org:"Anna University · LICET, Chennai",
+      p:"An engineering degree in computer science, completed alongside my professional cricket career.",
+      more:["Engineering degree in computer science","Completed while competing professionally"] },
+    { grp:"Next", tag:"next", tagText:"Ambition", when:"Next", title:"Sports analytics & sports technology", org:"NFL · NBA · MLB · NHL · elite performance",
       p:"The goal: a role where athletic experience and analytical skill are both the job.",
       more:["Performance and player analysis","Predictive modeling for decisions that matter on game day","Tools that coaches and athletes actually want to open"] }
   ],
@@ -403,11 +416,11 @@ const CONTENT = {
       approach:"An interactive sports analytics site built on NBA data: statistical analysis, predictive modeling, and a side-by-side comparison of machine-learning approaches.",
       tools:"Python · Random Forest · XGBoost (exploring) · interactive web front end",
       outcome:"In progress. Not a finished or commercial product, and no results are published yet.", links:[] },
-    { id:"cv", cat:"sports", viz:"cv", title:"Sports Video Analytics & Computer Vision", status:"Exploration · concept",
-      problem:"Coaches and managers spend hours logging practice footage by hand.",
-      approach:"Exploring how tracking athletes and the ball in practice video could automate that data entry and give coaches something to act on sooner.",
-      tools:"Computer vision (exploring) · Python",
-      outcome:"Concept stage. The preview above is a visual illustration, not a working tracker.", links:[] },
+    { id:"football", cat:"sports", viz:"football", title:"Football Player Market Value Model", status:"Academic project · ML",
+      problem:"Transfer fees are huge and noisy. Can a model show a club which players the market is undervaluing?",
+      approach:"A machine-learning pipeline across European leagues: log-transformed features to tame skewed valuations, SMOTE to rebalance the training data, and Gradient Boosting tested against linear baselines.",
+      tools:"Python · Gradient Boosting · SMOTE · feature engineering",
+      outcome:"R² = 0.612, about 80% better than linear baselines. Valuation error fell by €1.7M per player, and the model surfaced 64 undervalued transfer targets for scouting.", links:[] },
     { id:"hotel", cat:"ml", viz:"hotel", title:"Hotel Booking Cancellation Prediction", status:"Machine-learning project",
       problem:"Which reservations are likely to be cancelled, so a hotel can plan around them?",
       approach:"A classification workflow end to end: understanding the data, preparing features, training models, cross-validation, evaluation and comparing predictive performance.",
@@ -427,6 +440,16 @@ const CONTENT = {
       approach:"Shot maps against different bowlers, video from nets and matches, and timing consistency, used to find what my technique was hiding.",
       tools:"Video analysis · wagon wheels · heat maps",
       outcome:"The data exposed a balance flaw in my initial movement. After correcting it, my missed-delivery rate fell from 20% to 7%.", links:[] },
+    { id:"rivalry", cat:"sports", viz:"rivalry", title:"Rivalry Messaging & Fan Donations", status:"Academic project · experiment",
+      problem:"Does framing a fundraising message around a sports rivalry make fans give more?",
+      approach:"I led a causal-inference experiment comparing rivalry-framed messaging with a neutral message, then measured the effect on donation willingness, including for fans with a geographic connection to the team.",
+      tools:"Experimental design · causal inference · hypothesis testing",
+      outcome:"Rivalry messaging drove $7.26 higher average donations, with a significant treatment effect (p = 0.025) among geographically connected fans.", links:[] },
+    { id:"bj", cat:"ml", viz:"mediation", title:"Brand Language & Word-of-Mouth", status:"Academic project · text analytics",
+      problem:"A Ben & Jerry's marketing experiment: which words in a brand's message trigger backlash, and which earn recommendations?",
+      approach:"Text features with TF-IDF and logistic regression on 519 users' responses, then Baron-Kenny mediation analysis to test how the language shaped referrals.",
+      tools:"Python · TF-IDF · logistic regression · mediation analysis",
+      outcome:"Moral-mission framing predicted negative referrals, while sensory product language drove positive word-of-mouth: a clear signal for brand strategy.", links:[] },
     { id:"sap", cat:"edu", viz:"sap", title:"SAP ERP Educational Support", status:"Ongoing · teaching assistant",
       problem:"ERP makes sense only once you see how one transaction triggers the next.",
       approach:"Helping students trace a process across modules: a sales order checks stock, triggers production, issues goods and ends in billing.",
@@ -434,21 +457,29 @@ const CONTENT = {
       outcome:"Ongoing teaching support in labs and help sessions.", links:[] }
   ],
   skills: [
-    { n:"Python", lvl:"d", pj:["nba","hotel","credit","cv"], note:"My main tool for modeling and analysis." },
+    { n:"Python", lvl:"d", pj:["nba","football","bj","hotel","credit"], note:"My main tool for modeling and analysis." },
     { n:"SQL", lvl:"d", pj:["nba","hotel"], note:"Databases and analytics queries in graduate coursework and project data prep." },
-    { n:"Machine learning", lvl:"d", pj:["nba","hotel","credit"], note:"Classification and prediction, with attention to evaluation and leakage." },
-    { n:"Predictive modeling", lvl:"d", pj:["nba","hotel","credit"], note:"Turning a question into features, a model and a decision." },
-    { n:"Statistical analysis", lvl:"d", pj:["nba","cricket"], note:"The foundation under every model I build." },
+    { n:"Machine learning", lvl:"d", pj:["nba","football","bj","hotel","credit"], note:"Classification and prediction, with attention to evaluation and leakage." },
+    { n:"Predictive modeling", lvl:"d", pj:["football","nba","hotel","credit"], note:"Turning a question into features, a model and a decision." },
+    { n:"Statistical analysis", lvl:"d", pj:["rivalry","bj","nba","cricket"], note:"The foundation under every model I build." },
     { n:"Data visualization", lvl:"d", pj:["nba","cricket"], note:"Making an analysis readable for someone who has to act on it." },
     { n:"Excel", lvl:"d", pj:["hotel","sap"], note:"Fast exploration and sanity checks." },
+    { n:"Tableau", lvl:"d", pj:[], note:"Visual analysis of sports, entertainment and marketing data." },
+    { n:"Causal inference", lvl:"d", pj:["rivalry","bj"], note:"Experiments and mediation analysis: not just what happened, but why." },
+    { n:"Text analytics", lvl:"d", pj:["bj"], note:"TF-IDF features and classification on real responses." },
+    { n:"Gen AI", lvl:"d", pj:[], note:"Part of how I analyze and build, including this website." },
+    { n:"Google Cloud Platform", lvl:"d", pj:[], note:"Cloud tools for data work." },
+    { n:"Google Analytics", lvl:"d", pj:[], note:"Certified." },
     { n:"SAP ERP", lvl:"d", pj:["sap"], note:"SD, MM, PP and Fiori, taught as a TA." },
-    { n:"Sports analytics", lvl:"d", pj:["nba","cricket","cv"], note:"Where the athlete and the analyst meet." },
-    { n:"Computer vision", lvl:"x", pj:["cv"], note:"Currently exploring for practice-video analysis." },
+    { n:"Sports analytics", lvl:"d", pj:["nba","football","rivalry","cricket"], note:"Where the athlete and the analyst meet." },
+    { n:"Computer vision", lvl:"x", pj:[], note:"Next on my learning list, for analyzing practice video." },
+    { n:"Power BI", lvl:"x", pj:[], note:"Workshop-trained; building fluency." },
     { n:"XGBoost", lvl:"x", pj:["nba"], note:"Currently exploring alongside Random Forest." },
     { n:"Interactive web apps", lvl:"x", pj:["nba"], note:"Currently exploring, to put models in front of people." }
   ],
   interests: [
     { n:"Cricket", shape:"batball", t:"Athlete performance", p:"My first language. I'm fascinated by the split second before the ball arrives, where balance, habit and decision all show up at once." },
+    { n:"NFL", shape:"nflball", t:"Football analytics", p:"Every snap is a set piece: a formation, a decision and a measurable outcome. Player tracking has made the NFL one of the richest places in sport to do analytics." },
     { n:"NBA", shape:"basketball", t:"Predictive sports analysis", p:"Ten players, constant motion and a shot every few seconds. Basketball produces the kind of data where prediction becomes genuinely interesting." },
     { n:"MLB", shape:"baseball", t:"Baseball analytics", p:"The sport that taught the others to count. Cricket's cousin, with every pitch a clean, measurable event." },
     { n:"NHL", shape:"puck", t:"Hockey analytics", p:"Fast, chaotic and hard to measure, which is exactly why it's exciting. The panels on hockey were some of my favourites at SSAC." },
@@ -467,11 +498,18 @@ const CASES = {
     pipeline:["NBA data","Cleaning & features","Baseline model","Random Forest","XGBoost","Cross-validated comparison","Interactive site"],
     results:"TODO: add the model comparison once validated", limitations:"In development. Sports outcomes are noisy, so a model that looks good on one season can fail on the next. Validation across seasons matters more than one score.",
     next:"Finish the model comparison, publish the repository, and connect the models to the interactive explorer." },
-  cv:{ data:"Practice footage from training sessions.",
-    approach:"Tracking pipeline design: detect players and the ball in each frame, link detections into tracks, map pixels to court coordinates, then turn tracks into events a coach cares about.",
-    pipeline:["Practice video","Player & ball detection","Multi-object tracking","Court mapping","Event tagging","Coach summary"],
-    results:"None yet. Concept stage: the viewer in the lab runs on simulated tracking data, not a model.", limitations:"Occlusion, camera angle and identity switches are the hard problems, and nothing here has been validated on real footage.",
-    next:"Prototype detection on a short clip and measure tracking accuracy against hand-labelled frames." },
+  football:{ data:"Player market values and attributes across European football leagues.",
+    pipeline:["Player data","Log-transformed features","SMOTE","Linear baselines","Gradient Boosting","Undervalued targets"],
+    results:"R² = 0.612, outperforming linear baselines by about 80%. Valuation error reduced by €1.7M per player. 64 undervalued transfer targets surfaced for scouting decisions.",
+    repo:false },
+  rivalry:{ data:"Responses from a fan experiment comparing a rivalry-framed message with a neutral one.",
+    pipeline:["Design messages","Assign fans to conditions","Measure donation willingness","Estimate treatment effect","Segment: connected fans"],
+    results:"Rivalry framing: $7.26 higher average donations. Significant treatment effect (p = 0.025) among geographically connected fans.",
+    repo:false },
+  bj:{ data:"A Ben & Jerry's marketing experiment with responses from 519 users.",
+    pipeline:["519 responses","TF-IDF features","Logistic regression","Baron-Kenny mediation","Brand recommendations"],
+    results:"Moral-mission framing predicted negative referrals; sensory product language drove positive word-of-mouth.",
+    repo:false },
   hotel:{ data:"Hotel reservation records with booking attributes and a cancelled / not-cancelled label.",
     pipeline:["Booking data","Exploration","Feature preparation","Train classifiers","Cross-validation","Evaluate & compare"],
     results:"TODO: add verified evaluation metrics", limitations:"Cancellation behaviour shifts with season and policy, so the model needs re-validation over time. With imbalanced classes, accuracy alone is misleading.",
@@ -534,7 +572,7 @@ scene('experience','Experience and education',`<div class="wide" style="max-widt
   <p class="rv">Completed, current and still ahead, kept separate on purpose. Hover or tap an entry for detail.</p>
   <div class="spine" id="spine"></div>
 </div>`,{shape:'helix',ox:.32,s:1,tilt:.1,a:.8,nav:'Experience'});
-CONTENT.experience.forEach(x=>{$('#spine').appendChild(h(`<button class="xp panel rv" type="button" aria-expanded="false">
+let lastG='';CONTENT.experience.forEach(x=>{if(x.grp&&x.grp!==lastG){lastG=x.grp;$('#spine').appendChild(h(`<div class="xgrp mono rv">${esc(x.grp==='Next'?'Next':x.grp)}</div>`))}$('#spine').appendChild(h(`<button class="xp panel rv" type="button" aria-expanded="false">
   <span class="hd"><span class="mono">${esc(x.when)}</span><span class="tagp ${x.tag}">${esc(x.tagText)}</span></span>
   <h3>${esc(x.title)}</h3><span class="org">${esc(x.org)}</span><p>${esc(x.p)}</p>
   <span class="more"><div><ul>${x.more.map(m=>`<li>${esc(m)}</li>`).join('')}</ul></div></span></button>`))});
@@ -557,8 +595,7 @@ scene('lab','Analytics playground',`<div class="wide">
   <div class="tabs rv" role="tablist" aria-label="Experiments">
     <button class="chipb" role="tab" data-t="a" aria-selected="true" type="button">A · NBA explorer</button>
     <button class="chipb" role="tab" data-t="c" aria-selected="false" type="button">B · Cricket physics</button>
-    <button class="chipb" role="tab" data-t="v" aria-selected="false" type="button">C · Vision tracking</button>
-    <button class="chipb" role="tab" data-t="b" aria-selected="false" type="button">D · Prediction</button></div>
+    <button class="chipb" role="tab" data-t="b" aria-selected="false" type="button">C · Prediction</button></div>
   <div class="panel labgrid rv"><canvas id="labcv" role="img" aria-label="Interactive visualization"></canvas><div class="labside" id="labside"></div></div>
 </div>`,{shape:'grid',ox:0,s:1.4,tilt:.9,a:.3,nav:'Lab'});
 
@@ -656,6 +693,10 @@ SH.stars=(()=>{const P=[];for(let i=0;i<N;i++)P.push([(rnd()-.5)*4.6,(rnd()-.5)*
 SH.ball=(()=>{const P=[];sph(P,.8,F(.7),()=>4);for(const sx of[-.075,-.03,.03,.075])ring(P,0,0,0,1,0,0);for(const sx of[-.085,-.04,0,.04,.085]){const r=Math.sqrt(.8*.8-sx*sx)*1.012;for(let i=0;i<F(.06);i++){const a=i/F(.06)*Math.PI*2;P.push([sx,Math.cos(a)*r,Math.sin(a)*r,1])}}return build(P)})();
 function seamBall(body,seam,curves){const P=[];sph(P,.8,F(.62),()=>body);curves(P,seam);return build(P)}
 SH.basketball=seamBall(4,1,(P,c)=>{const n=F(.095);for(let i=0;i<n;i++){const a=i/n*Math.PI*2,R=.81;P.push([Math.cos(a)*R,0,Math.sin(a)*R,c]);P.push([0,Math.cos(a)*R,Math.sin(a)*R,c]);for(const s of[-1,1]){const x=s*.5,r=Math.sqrt(R*R-x*x);P.push([x,Math.cos(a)*r,Math.sin(a)*r,c])}}});
+SH.nflball=(()=>{const P=[],A=1.05,B=.5;for(let i=0;i<F(.62);i++){const u=Math.acos(1-2*rnd()),a=rnd()*Math.PI*2,r=B*Math.sin(u);P.push([A*Math.cos(u),Math.cos(a)*r,Math.sin(a)*r,4])}
+  for(let i=0;i<F(.08);i++){const x=-.32+.64*i/F(.08),r=B*Math.sqrt(Math.max(0,1-(x/A)**2));P.push([x,r+.01,0,1])}
+  for(let k=0;k<8;k++){const x=-.28+k*.08,r=B*Math.sqrt(1-(x/A)**2);for(let j=0;j<F(.006);j++){const z=-.07+.14*j/F(.006),y=Math.sqrt(Math.max(0,r*r-z*z));P.push([x,y+.01,z,1])}}
+  for(const sx of[-1,1])for(let i=0;i<F(.05);i++){const a=i/F(.05)*Math.PI*2,x=sx*.72,r=B*Math.sqrt(1-(x/A)**2);P.push([x,Math.cos(a)*r,Math.sin(a)*r,1])}return build(P)})();
 SH.baseball=seamBall(2,4,(P,c)=>{const n=F(.38),al=.42,R=.815;for(let i=0;i<n;i++){const t=i/n*Math.PI*4,th=Math.PI/2-(Math.PI/2-al)*Math.cos(t),ph=t/2+al*Math.sin(2*t)*.9;P.push([Math.sin(th)*Math.cos(ph)*R,Math.cos(th)*R,Math.sin(th)*Math.sin(ph)*R,c])}});
 SH.puck=(()=>{const P=[],R=.78,H=.17;for(let i=0;i<F(.5);i++){const a=rnd()*Math.PI*2,r=Math.sqrt(rnd())*R;P.push([Math.cos(a)*r,rnd()>.5?H:-H,Math.sin(a)*r,2])}for(let i=0;i<F(.26);i++){const a=rnd()*Math.PI*2;P.push([Math.cos(a)*R,(rnd()-.5)*2*H,Math.sin(a)*R,3])}ring(P,0,H,0,R,F(.12),0);ring(P,0,-H,0,R,F(.12),0);return build(P)})();
 SH.network=(()=>{const P=[],Ls=[4,6,7,6,3],nodes=[];Ls.forEach((n,l)=>{const col=[];for(let k=0;k<n;k++)col.push([-1+l*.5,(k-(n-1)/2)*.3,(rnd()-.5)*.5]);nodes.push(col)});nodes.forEach(col=>col.forEach(nd=>{for(let i=0;i<F(.011);i++)P.push([nd[0]+(rnd()-.5)*.05,nd[1]+(rnd()-.5)*.05,nd[2]+(rnd()-.5)*.05,1])}));const rest=N-P.length;for(let i=0;i<rest;i++){const l=Math.floor(rnd()*4),a=nodes[l][Math.floor(rnd()*nodes[l].length)],b=nodes[l+1][Math.floor(rnd()*nodes[l+1].length)],t=rnd();P.push([lerp(a[0],b[0],t),lerp(a[1],b[1],t),lerp(a[2],b[2],t),i%4===0?3:0])}return build(P)})();
@@ -749,6 +790,14 @@ const VIZ={
   cricket(x,w,hh,t,m){const gx=w/2,gy=hh/2,R=Math.min(w*.46,hh*.46);x.strokeStyle=C.line;x.beginPath();x.ellipse(gx,gy,R*1.5,R,0,0,7);x.stroke();x.setLineDash([3,6]);x.beginPath();x.ellipse(gx,gy,R*.62,R*.42,0,0,7);x.stroke();x.setLineDash([]);x.fillStyle='rgba(255,181,71,.25)';x.fillRect(gx-3,gy-R*.16,6,R*.32);
     const by=gy+R*.14,ma=m.in?Math.atan2(m.y-by,m.x-gx):null;for(let i=0;i<26;i++){const a=-Math.PI+((i*2.399)%(Math.PI*2)),len=(.35+.65*((i*7)%10)/10),gr=clamp((t*.5-i*.06)%4,0,1),ex=gx+Math.cos(a)*R*1.5*len*gr,ey=by+Math.sin(a)*R*len*gr,hot=ma!==null&&Math.abs(Math.atan2(Math.sin(a-ma),Math.cos(a-ma)))<.3;
       x.strokeStyle=hot?C.amber:len>.9?C.cyan:len>.6?C.ice:'rgba(184,196,214,.5)';x.lineWidth=hot?2.2:1.1;x.beginPath();x.moveTo(gx,by);x.lineTo(ex,ey);x.stroke()}x.lineWidth=1;txt(x,'ILLUSTRATIVE WAGON WHEEL · MOVE TO HIGHLIGHT A ZONE',12,hh-10)},
+  football(x,w,hh,t){const L=w*.12,B=hh*.84,W=w*.8,H=hh*.7;x.strokeStyle=C.line;x.beginPath();x.moveTo(L,B-H);x.lineTo(L,B);x.lineTo(L+W,B);x.stroke();x.setLineDash([4,6]);x.beginPath();x.moveTo(L,B);x.lineTo(L+W,B-H);x.stroke();x.setLineDash([]);
+    for(let i=0;i<44;i++){const q=((i*.618)%1),gr=clamp((t*.6-i*.03)%5,0,1),dev=Math.sin(i*12.9898)*.2,under=dev<-.11&&q>.2,px=L+q*W,py=B-clamp(q+dev,.04,1)*H*gr;x.fillStyle=under?C.amber:'rgba(53,224,255,.75)';x.beginPath();x.arc(px,py,under?4.5:3,0,7);x.fill();if(under){x.strokeStyle='rgba(255,181,71,.45)';x.beginPath();x.arc(px,py,8+Math.sin(t*3+i)*2,0,7);x.stroke()}}
+    txt(x,'MODEL VALUE →',L+W,B+16,C.mute,10,'right');txt(x,'MARKET VALUE',L,B-H-8,C.mute,10);txt(x,'● BELOW THE LINE = MARKET UNDERVALUES',L+8,B-H+12,C.amber,10);txt(x,'R² 0.612 · 64 UNDERVALUED TARGETS',L+W,22,C.amber,10.5,'right');txt(x,'ILLUSTRATIVE POINTS · NOT THE REAL DATA',12,hh-10)},
+  rivalry(x,w,hh,t){const B=hh*.8,bw=Math.min(w*.18,120),g=clamp(((t*.4)%3),0,1),e=1-Math.pow(1-g,3);[['NEUTRAL MESSAGE',.36,C.uv],['RIVALRY MESSAGE',.54,C.cyan]].forEach(([k,v,c],i)=>{const bx=w*(i?.62:.38)-bw/2,bh=hh*v*e;x.fillStyle=c;x.globalAlpha=.85;x.fillRect(bx,B-bh,bw,bh);x.globalAlpha=1;txt(x,k,bx+bw/2,B+16,C.ice,w<520?9:10.5,'center')});
+    x.strokeStyle=C.line;x.beginPath();x.moveTo(w*.15,B+.5);x.lineTo(w*.85,B+.5);x.stroke();if(e>.95){x.font='900 '+Math.round(Math.min(w,hh)*.09)+'px Unbounded,"Arial Black",sans-serif';x.fillStyle=C.amber;x.textAlign='center';x.fillText('+$7.26',w*.62,B-hh*.54-16)}txt(x,'p = 0.025 · GEOGRAPHICALLY CONNECTED FANS',w/2,24,C.silver,10.5,'center');txt(x,'BAR HEIGHTS ILLUSTRATIVE · EFFECT AS REPORTED',12,hh-10)},
+  mediation(x,w,hh,t){const n=[['MESSAGE',w*.16,hh*.62],['LANGUAGE',w*.5,hh*.26],['REFERRALS',w*.84,hh*.62]],r=w<520?26:34;x.lineWidth=1.4;[[0,1],[1,2],[0,2]].forEach(([a,b],k)=>{const A=n[a],Bn=n[b];x.strokeStyle=k===2?'rgba(184,196,214,.35)':C.cyan;if(k===2)x.setLineDash([4,6]);x.beginPath();x.moveTo(A[1],A[2]);x.lineTo(Bn[1],Bn[2]);x.stroke();x.setLineDash([]);const q=((t*.5)+k*.33)%1;x.fillStyle=k===2?C.silver:C.amber;x.beginPath();x.arc(lerp(A[1],Bn[1],q),lerp(A[2],Bn[2],q),3.5,0,7);x.fill()});
+    n.forEach(([l,px,py])=>{x.fillStyle='rgba(6,10,19,.92)';x.strokeStyle=C.ice;x.beginPath();x.arc(px,py,r,0,7);x.fill();x.stroke();txt(x,l,px,py+4,C.ice,w<520?8.5:10,'center')});x.lineWidth=1;
+    txt(x,'SENSORY LANGUAGE → + WORD-OF-MOUTH',w/2,hh*.84,C.cyan,10.5,'center');txt(x,'MORAL-MISSION FRAMING → − REFERRALS',w/2,hh*.84+16,C.amber,10.5,'center');txt(x,'BARON-KENNY MEDIATION · DIAGRAM',12,hh-10)},
   sap(x,w,hh,t){const nodes=[['SD','Sales order'],['MM','Stock check'],['PP','Production order'],['MM','Goods issue'],['SD','Billing']],n=nodes.length,y=hh/2,pad=w*.09,step=(w-2*pad)/(n-1);x.strokeStyle=C.line;x.beginPath();x.moveTo(pad,y);x.lineTo(w-pad,y);x.stroke();
     const ph=(t*.28)%1,px=pad+ph*(w-2*pad);x.fillStyle=C.amber;x.beginPath();x.arc(px,y,4.5,0,7);x.fill();
     nodes.forEach((nd,i)=>{const nx=pad+i*step,on=px>=nx-4;x.fillStyle=on?'rgba(53,224,255,.16)':'rgba(6,10,19,.9)';x.strokeStyle=on?C.cyan:C.line;x.lineWidth=1.4;x.beginPath();x.arc(nx,y,w<520?16:24,0,7);x.fill();x.stroke();txt(x,nd[0],nx,y+4,on?C.cyan:C.silver,w<520?10:12,'center');txt(x,w<520?nd[1].split(' ')[0]:nd[1],nx,y+(i%2?-36:48),C.ice,w<520?9:10.5,'center')})}
@@ -900,16 +949,16 @@ $('#copy').onclick=()=>{const e=$('#email'),o=$('#copied'),sel=()=>{const r=docu
 let dlg=null,lastFocus=null;
 function closeDlg(){if(dlg){dlg.remove();dlg=null;if(lastFocus)lastFocus.focus()}}
 function openDlg(inner){closeDlg();lastFocus=document.activeElement;dlg=h(`<div class="veil"><div class="dlg panel" role="dialog" aria-modal="true">${inner}</div></div>`);dlg.addEventListener('pointerdown',e=>{if(e.target===dlg)closeDlg()});document.body.appendChild(dlg);return dlg}
-function palette(){const items=[...scenes.filter(s=>s.nav||s.id==='top'||s.id==='future').map(s=>({l:s.id==='top'?'Home':s.nav||'The future',k:'Go',f:()=>go(s.id)})),...CONTENT.projects.map(p=>({l:'Project: '+p.title,k:'Case study',f:()=>{csOpen=true;selectProject(p.id)}})),{l:'Lab: NBA analytics explorer',k:'Demo',f:()=>openLab('a')},{l:'Lab: Cricket physics simulator',k:'Demo',f:()=>openLab('c')},{l:'Lab: Computer vision tracking',k:'Demo',f:()=>openLab('v')},{l:'Recruiter mode (fast summary)',k:'Mode',f:()=>setMode('recruiter')},{l:'Immersive mode (cinematic)',k:'Mode',f:()=>setMode('immersive')},{l:'Quick brief (60-second summary)',k:'Open',f:brief},{l:'How this site works (engineering)',k:'Go',f:()=>go('engine')},{l:'Toggle visual effects',k:'FX',f:toggleFx},{l:'Copy email address',k:'Copy',f:()=>{go('contact');$('#copy').click()}}];
+function palette(){const items=[...scenes.filter(s=>s.nav||s.id==='top'||s.id==='future').map(s=>({l:s.id==='top'?'Home':s.nav||'The future',k:'Go',f:()=>go(s.id)})),...CONTENT.projects.map(p=>({l:'Project: '+p.title,k:'Case study',f:()=>{csOpen=true;selectProject(p.id)}})),{l:'Lab: NBA analytics explorer',k:'Demo',f:()=>openLab('a')},{l:'Lab: Cricket physics simulator',k:'Demo',f:()=>openLab('c')},{l:'Recruiter mode (fast summary)',k:'Mode',f:()=>setMode('recruiter')},{l:'Immersive mode (cinematic)',k:'Mode',f:()=>setMode('immersive')},{l:'Quick brief (60-second summary)',k:'Open',f:brief},{l:'How this site works (engineering)',k:'Go',f:()=>go('engine')},{l:'Toggle visual effects',k:'FX',f:toggleFx},{l:'Copy email address',k:'Copy',f:()=>{go('contact');$('#copy').click()}}];
   const d=openDlg(`<label class="mono" for="pal">Search sections, projects and demos</label><input id="pal" type="text" placeholder="Try “credit”, “cricket” or “recruiter”…" autocomplete="off"><ul id="pall"></ul>`),inp=$('#pal',d),ul=$('#pall',d);let idx=0,list=items;
   const draw=()=>{ul.innerHTML='';list.forEach((it,i)=>{const li=h(`<li><button type="button" class="${i===idx?'act':''}"><span>${esc(it.l)}</span><span class="mono">${it.k}</span></button></li>`);li.firstChild.onclick=()=>{closeDlg();it.f()};ul.appendChild(li)})};
   inp.oninput=()=>{const q=inp.value.toLowerCase();list=items.filter(i=>i.l.toLowerCase().includes(q));idx=0;draw()};
   inp.onkeydown=e=>{if(e.key==='ArrowDown'){idx=Math.min(list.length-1,idx+1);draw();e.preventDefault()}else if(e.key==='ArrowUp'){idx=Math.max(0,idx-1);draw();e.preventDefault()}else if(e.key==='Enter'&&list[idx]){const f=list[idx].f;closeDlg();f()}};draw();inp.focus()}
 function brief(){const av=CONTENT.portrait?`<img class="mono-av" src="${esc(CONTENT.portrait)}" alt="Portrait of Hemanth Kumar Gopi">`:`<div class="mono-av" aria-hidden="true">HK</div>`;
   const d=openDlg(`<div class="brief">${av}<div><div class="mono cy">Quick brief</div><h3 style="margin:6px 0 14px">Hemanth Kumar Gopi</h3>
-  <dl><div><dt>Who</dt><dd>Former professional cricketer (Tamil Nadu Premier League, state-level) turned sports analyst. Boston, MA; from Chennai, India.</dd></div>
-  <div><dt>Now</dt><dd>MS in Business Analytics, Suffolk University (expected May 2027). Men's basketball program; teaching assistant for SAP ERP.</dd></div>
-  <div><dt>Focus</dt><dd>Sports analytics, predictive modeling, machine learning and computer vision for performance. Interested in NBA, MLB and NHL.</dd></div>
+  <dl><div><dt>Who</dt><dd>Former professional cricketer (Tamil Nadu Premier League, state-level) with a B.E. in Computer Science, now a sports analyst. Boston, MA; from Chennai, India.</dd></div>
+  <div><dt>Now</dt><dd>MS in Business Analytics, Suffolk University (expected May 2027). 2026 MIT Sloan Sports Analytics Conference mentee. Graduate Fellow and teaching assistant; men's basketball program.</dd></div>
+  <div><dt>Focus</dt><dd>Sports analytics, predictive modeling, machine learning and computer vision for performance. Interested in the NFL, NBA, MLB and NHL.</dd></div>
   <div><dt>Edge</dt><dd>I know sport from the athlete's side and the analyst's side.</dd></div>
   <div><dt>Contact</dt><dd><span style="user-select:all">${esc(ct.email)}</span> · <a href="${esc(ct.linkedin)}" target="_blank" rel="noopener">LinkedIn</a> · <a href="${esc(ct.github)}" target="_blank" rel="noopener">GitHub</a></dd></div></dl>
   <div class="row" style="margin-top:16px"><button class="btn" type="button" id="b-work">See projects</button><button class="btn ghost" type="button" id="b-x">Close</button></div></div></div>`);
@@ -937,7 +986,7 @@ function renderRec(){const r=$('#rec'),c=CONTENT.contact,sk=(l)=>CONTENT.skills.
     <span class="mono cy" id="r-copied" aria-live="polite"></span></div>
   <div class="rgrid">
     <section class="panel rcard" aria-label="Experience and education"><h3>Experience & education</h3>
-      ${CONTENT.experience.filter(x=>x.tag!=='next').map(x=>`<div class="rx"><span class="mono">${esc(x.when)}</span><div><strong>${esc(x.title)}</strong><div style="color:var(--cyan);font-size:14.5px;font-weight:700">${esc(x.org)}</div><p>${esc(x.p)}</p></div></div>`).join('')}</section>
+      ${['Experience','Education'].map(g=>`<div class="mono cy" style="margin-top:6px">${g}</div>`+CONTENT.experience.filter(x=>x.grp===g).map(x=>`<div class="rx"><span class="mono">${esc(x.when)}</span><div><strong>${esc(x.title)}</strong><div style="color:var(--cyan);font-size:14.5px;font-weight:700">${esc(x.org)}</div><p>${esc(x.p)}</p></div></div>`).join('')).join('')}</section>
     <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
       <section class="panel rcard" aria-label="Skills"><h3>Skills</h3><div class="mono">Demonstrated</div><div class="chips2">${sk('d')}</div><div class="mono">Currently exploring</div><div class="chips2">${sk('x')}</div></section>
       <section class="panel rcard" aria-label="Looking for"><h3>Looking for</h3><p style="font-size:16px">${esc(CONTENT.seeking)}</p><p class="mono">Boston, MA · from Chennai, India</p></section>

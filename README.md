@@ -25,7 +25,7 @@
 
 This repository holds my personal portfolio: an interactive, cinematic website that tells the story of my move from professional cricket into sports analytics.
 
-I spent seven years in competitive cricket. That included state-level cricket with the Tamil Nadu Cricket Association and the Tamil Nadu Premier League with Dindigul Dragons. I'm now pursuing an MS in Business Analytics at Suffolk University in Boston. The site is built the way I like to work: it starts with a story and is backed by data. Every visual on it is generated in code.
+I spent seven years in competitive cricket. That included state-level cricket with the Tamil Nadu Cricket Association and the Tamil Nadu Premier League with Dindigul Dragons. I hold a B.E. in Computer Science, was selected for the 2026 MIT Sloan Sports Analytics Conference Mentorship Program, and am now pursuing an MS in Business Analytics at Suffolk University in Boston. The site is built the way I like to work: it starts with a story and is backed by data. Every visual on it is generated in code.
 
 The site is more than a résumé. It has five parts:
 
@@ -41,11 +41,11 @@ The site is more than a résumé. It has five parts:
 
 | | Feature | What it does |
 |---|---|---|
-| ✨ | **Particle engine** | A custom canvas engine animates thousands of particles (2,600 on desktop and 1,300 on mobile) with spring physics and 3D perspective. They re-form into a new shape for every scene: a stadium, a pitch with a bat, a globe, a court, a network and more. |
+| ✨ | **Particle engine** | A custom canvas engine animates thousands of particles (2,600 on desktop and 1,300 on mobile) with spring physics and 3D perspective. They re-form into a new shape for every scene: a stadium, a pitch with a bat, a globe, a court, an American football, a network and more. |
 | 🎬 | **Story chapters** | Five chapters: *The Athlete → The Question → The Transition → The Analyst → The Builder*, from Chennai to Boston. |
 | 🎯 | **Two modes** | **Immersive** is the full cinematic experience. **Recruiter** is a clean summary you can read in 20 seconds. Both modes draw from the same content. |
 | 🪐 | **Project universe** | Every project opens a structured case study: problem, data, approach, technology, results, limitations and next steps. |
-| 🧪 | **Analytics playground** | Four live, interactive demos: an NBA explorer, cricket ball physics, vision tracking and a prediction demo. Each one says clearly when it uses demonstration data. |
+| 🧪 | **Analytics playground** | Three live, interactive demos: an NBA explorer, cricket ball physics and a prediction demo. Each one says clearly when it uses demonstration data. |
 | 🏏 | **Cricket ball physics** | The ball's flight is calculated live with real gravity (9.81 m/s²). It is not a pre-made animation. |
 | ⌨️ | **Command menu** | Press `⌘K` / `Ctrl+K` to search sections, projects and demos, switch modes, toggle effects or copy my email. |
 | ⚙️ | **"How this site works"** | A behind-the-scenes section that shows how the site runs, including a live frames-per-second counter for your device. |
@@ -136,7 +136,7 @@ Edit the text, commit, push, and the live site updates by itself.
 
 ## Let's connect
 
-I'm looking for **internships and roles in sports analytics, sports technology and data science**, especially with NBA, MLB and NHL organizations or teams working on athlete performance.
+I'm looking for **internships and roles in sports analytics, sports technology and data science**, especially with NFL, NBA, MLB and NHL organizations or teams working on athlete performance.
 
 - 🌐 **Website:** [hemanthkumargopi.vercel.app](https://hemanthkumargopi.vercel.app)
 - 💼 **LinkedIn:** [linkedin.com/in/hemanthkumargopi](https://www.linkedin.com/in/hemanthkumargopi)
