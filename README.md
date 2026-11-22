@@ -47,8 +47,8 @@ The site is more than a résumé. It has five parts:
 | 🪐 | **Project universe** | Every project opens a structured case study: problem, data, approach, technology, results, limitations and next steps. |
 | 🧪 | **Analytics playground** | Three live, interactive demos: an NBA explorer, cricket ball physics and a prediction demo. Each one says clearly when it uses demonstration data. |
 | 🏏 | **Cricket ball physics** | The ball's flight is calculated live with real gravity (9.81 m/s²). It is not a pre-made animation. |
-| 🏏 | **The shot** | A scroll-driven interlude: the bat swings, the ball goes for six into the floodlights and explodes into particles that form the words "Every shot is data." |
-| 🎥 | **Film room** | Real match footage of my last three sixes, with autoplay when it scrolls into view. |
+| 🏏 | **The shot** | A scroll-driven interlude: the bat swings, the ball sails into the floodlights and explodes into particles that form the words "Every shot is data." |
+| 🎥 | **Film room** | A short glimpse of real match footage at the crease, playing when it scrolls into view. |
 | 📱 | **Phone edition** | A separate phone layout: the 3D scene sits at the top, content on glass cards below, plus an app-style bottom dock. |
 | ⌨️ | **Command menu** | Press `⌘K` / `Ctrl+K` to search sections, projects and demos, switch modes, toggle effects or copy my email. |
 | ⚙️ | **"How this site works"** | A behind-the-scenes section that shows how the site runs, including a live frames-per-second counter for your device. |
@@ -92,7 +92,7 @@ The site is more than a résumé. It has five parts:
 .
 ├── index.html   # The entire website: markup, styles, particle engine and content
 ├── og.png       # 1200×630 share card shown when the link is posted on LinkedIn and elsewhere
-├── media/       # Highlight clips (last three sixes) and their poster frames
+├── media/       # Match clips and their poster frames
 └── README.md    # You are here
 ```
 

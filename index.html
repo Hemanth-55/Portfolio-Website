@@ -677,18 +677,18 @@ scene('top','Hero',`<div class="col">
 function shotScenes(){
   scene('shot','The shot',`<div class="shotstick"><canvas id="shotcv" aria-hidden="true"></canvas>
     <div class="shotui"><div class="mono kick">Interlude · The shot</div><div class="shotcap" id="shotcap" aria-live="polite">One delivery.</div>
-    <div class="mono shotside">Right-handed batter · No. 5</div><div class="mono shothint" id="shothint">Keep scrolling to face it ↓</div></div></div>`,{cls:'shot',shape:'stars',ox:0,s:1,tilt:.3,a:.05});
-  scene('film','Film room: my last three sixes',`<div class="wide">
-    <div class="mono kick rv">Film room · Real match footage</div>
-    <h2 class="rv">The last three sixes</h2>
-    <p class="rv">No animation this time. Right-handed, No. 5, under the floodlights. Tap a six to play it.</p>
+    <div class="mono shotside">Opening bat · Right-handed</div><div class="mono shothint" id="shothint">Keep scrolling to face it ↓</div></div></div>`,{cls:'shot',shape:'stars',ox:0,s:1,tilt:.3,a:.05});
+  scene('film','Film room',`<div class="wide">
+    <div class="mono kick rv">Film room</div>
+    <h2 class="rv">At the crease</h2>
+    <p class="rv">Opening bat. Right-handed. A glimpse from under the lights.</p>
     <div class="film panel rv">
-      <div class="screen" id="fscreen" role="button" tabindex="0" aria-label="Play or pause the highlight"><video id="fv" muted playsinline preload="none" poster="media/six1.jpg" aria-label="Match footage of a six"></video>
-        <div class="fbadge">SIX <b id="fbn">01</b></div><div class="mono fstate" id="fstate">Playing</div><div class="fprog"><i id="fpi"></i></div></div>
-      <div class="reel" role="tablist" aria-label="Choose a six">
-        <button type="button" role="tab" aria-selected="true"><img src="media/six1.jpg" alt="" loading="lazy"><div><span>Six 01</span><small>Lofted high into the floodlights</small></div></button>
-        <button type="button" role="tab" aria-selected="false"><img src="media/six2.jpg" alt="" loading="lazy"><div><span>Six 02</span><small>The strike, with the close-up replay</small></div></button>
-        <button type="button" role="tab" aria-selected="false"><img src="media/six3.jpg" alt="" loading="lazy"><div><span>Six 03</span><small>Over the rope, signalled by the umpire</small></div></button>
+      <div class="screen" id="fscreen" role="button" tabindex="0" aria-label="Play or pause the highlight"><video id="fv" muted playsinline preload="none" poster="media/six1.jpg" aria-label="Match footage"></video>
+        <div class="fbadge"><b id="fbn">01</b></div><div class="mono fstate" id="fstate">Playing</div><div class="fprog"><i id="fpi"></i></div></div>
+      <div class="reel" role="tablist" aria-label="Choose a clip">
+        <button type="button" role="tab" aria-selected="true"><img src="media/six1.jpg" alt="" loading="lazy"><div><span>Clip 01</span><small>Under the lights</small></div></button>
+        <button type="button" role="tab" aria-selected="false"><img src="media/six2.jpg" alt="" loading="lazy"><div><span>Clip 02</span><small>The swing, up close</small></div></button>
+        <button type="button" role="tab" aria-selected="false"><img src="media/six3.jpg" alt="" loading="lazy"><div><span>Clip 03</span><small>Through the line</small></div></button>
       </div>
     </div>
     <div class="mono credit rv">Broadcast footage: FanCode</div>
@@ -795,7 +795,7 @@ scenes.forEach((s,i)=>{
 CONTENT.story.forEach((c,i)=>{const b=h(`<button type="button" aria-label="Chapter ${c.n}: ${esc(c.key)}">${c.n}<span> · ${esc(c.key)}</span></button>`);b.onclick=()=>go(i===0?'story':c.id);chap.appendChild(b)});
 const STORY_IDS=CONTENT.story.map((c,i)=>i===0?'story':c.id);
 const dock=$('#dock');const ICO={home:'<path d="M3 11l9-7 9 7v9H5v-9"/>',story:'<path d="M4 5h7v14H4zM13 5h7v14h-7"/>',film:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/>',work:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'};
-const DK=[['top','Home','home'],['story','Story','story'],['film','Sixes','film'],['work','Work','work'],['contact','Contact','mail']].map(([id,l,ic])=>{const i=scenes.findIndex(s=>s.id===id);const b=h(`<button type="button" aria-label="${l}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICO[ic]}</svg><span>${l}</span></button>`);b.onclick=()=>go(id);dock.appendChild(b);return {id,i,b}}).filter(d=>d.i>=0);
+const DK=[['top','Home','home'],['story','Story','story'],['film','Film','film'],['work','Work','work'],['contact','Contact','mail']].map(([id,l,ic])=>{const i=scenes.findIndex(s=>s.id===id);const b=h(`<button type="button" aria-label="${l}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICO[ic]}</svg><span>${l}</span></button>`);b.onclick=()=>go(id);dock.appendChild(b);return {id,i,b}}).filter(d=>d.i>=0);
 function dockUpd(a){const id=scenes[a].id,wi=scenes.findIndex(s=>s.id==='work');const g=id==='top'?'top':id==='film'?'film':id==='contact'?'contact':(wi>=0&&a>=wi)?'work':'story';DK.forEach(d=>d.b.classList.toggle('on',d.id===g))}
 
 function go(id){const e=document.getElementById(id);if(!e)return;if(document.body.classList.contains('rec')&&!e.closest('#rec')){setMode('immersive');requestAnimationFrame(()=>e.scrollIntoView({behavior:'auto'}));return}e.scrollIntoView({behavior:RM?'auto':'smooth'})}
@@ -927,8 +927,7 @@ function universe(now){
     const endF=1-clamp((P0-.78)/.12,0,1)*.75,lit=clamp((P0-.5)/.2,0,1)*endF,fl=P0>.6&&P0<.76?Math.sin((P0-.6)/.16*Math.PI):0;
     [[w*.06,hh*.07],[w*.94,hh*.07]].forEach(([fx,fy],k)=>{const gl=x.createRadialGradient(fx,fy,0,fx,fy,G.m*(.14+.16*lit+(k?.3*fl:0)));gl.addColorStop(0,'rgba(220,235,255,'+(.16+.22*lit+(k?.35*fl:0))+')');gl.addColorStop(1,'rgba(220,235,255,0)');x.fillStyle=gl;x.fillRect(0,0,w,hh);
       x.fillStyle='rgba(255,255,255,'+(.5+.5*lit)+')';for(let i=0;i<4;i++)x.fillRect(fx-22+i*12,fy-6,8,12)});
-    // jersey 05 watermark
-    const fade=1-clamp((P0-.7)/.1,0,1);if(fade>0){x.font='900 '+Math.round(G.m*.72)+'px Unbounded,"Arial Black",sans-serif';x.textAlign='center';x.textBaseline='middle';x.lineWidth=1.2;x.strokeStyle='rgba(150,185,255,'+(.11*fade)+')';x.strokeText('05',w*(G.ph?.66:.7),hh*.58)}
+    const fade=1-clamp((P0-.7)/.1,0,1);
     // pitch, crease, stumps
     if(fade>0){x.globalAlpha=fade;const pg=x.createLinearGradient(0,0,w,0);pg.addColorStop(0,'rgba(53,224,255,0)');pg.addColorStop(.3,'rgba(53,224,255,.45)');pg.addColorStop(1,'rgba(53,224,255,0)');x.strokeStyle=pg;x.lineWidth=1.2;x.beginPath();x.moveTo(0,G.pitch);x.lineTo(w,G.pitch);x.stroke();
       const sx0=G.piv.x-G.m*.07;x.strokeStyle=C.ice;x.lineWidth=2;for(let i=0;i<3;i++){x.beginPath();x.moveTo(sx0+i*G.m*.016,G.pitch);x.lineTo(sx0+i*G.m*.016,G.pitch-G.m*.15);x.stroke()}
@@ -948,14 +947,14 @@ function universe(now){
         x.globalAlpha=al;x.fillStyle=g>.85&&!q.extra?(q.c===1?C.amber:C.ice):(q.c===1?C.amber:q.c===2?C.ice:C.cyan);const s=q.extra?1.6:(g>.9?(SMALL?2.2:2.6):2);x.fillRect(px-s/2,py-s/2,s,s)}
       x.globalAlpha=1;x.globalCompositeOperation='source-over';if(TX&&g>.5){x.font='900 '+TX.fs+'px Unbounded,"Arial Black",sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillStyle='rgba(220,235,255,'+(.2*(g-.5)*2)+')';x.fillText('EVERY SHOT',w/2,TX.cy-TX.fs*.62);x.fillText('IS DATA.',w/2,TX.cy+TX.fs*.62)}}
     // caption
-    const capT=P0<.3?'One delivery.':P0<.46?'Contact.':P0<.72?'Six.':'From the crease to the code.';if(capT!==lastCap){lastCap=capT;cap.textContent=capT;cap.classList.toggle('six',capT==='Six.')}
+    const capT=P0<.3?'One delivery.':P0<.46?'Contact.':P0<.72?'Into the lights.':'From the crease to the code.';if(capT!==lastCap){lastCap=capT;cap.textContent=capT;cap.classList.toggle('six',capT==='Into the lights.')}
     hint.style.opacity=P0<.04?1:0}
   window.addEventListener('resize',()=>{if(run)size()});
   new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!run){run=true;size();requestAnimationFrame(frame)}else if(!e.isIntersecting){run=false}}),{rootMargin:'100px 0px'}).observe(sec);
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{if(w)targets()});
 })();
 
-/* ===================== film room: the last three sixes ===================== */
+/* ===================== film room ===================== */
 (function(){const v=$('#fv');if(!v)return;const SIX=['media/six1','media/six2','media/six3'],btns=$$('.reel button'),st=$('#fstate'),pi=$('#fpi');let k=0,vis=false,loaded=false,user=false;
   function sel(i,play){k=i;v.poster=SIX[i]+'.jpg';v.src=SIX[i]+'.mp4';loaded=true;btns.forEach((b,j)=>b.setAttribute('aria-selected',j===i?'true':'false'));$('#fbn').textContent='0'+(i+1);pi.style.width='0';if(play)v.play().catch(()=>{});track('film',{six:i+1})}
   btns.forEach((b,i)=>b.addEventListener('click',()=>{user=true;sel(i,true)}));
@@ -1161,7 +1160,7 @@ $('#copy').onclick=()=>{const e=$('#email'),o=$('#copied'),sel=()=>{const r=docu
 let dlg=null,lastFocus=null;
 function closeDlg(){if(dlg){dlg.remove();dlg=null;if(lastFocus)lastFocus.focus()}}
 function openDlg(inner){closeDlg();lastFocus=document.activeElement;dlg=h(`<div class="veil"><div class="dlg panel" role="dialog" aria-modal="true">${inner}</div></div>`);dlg.addEventListener('pointerdown',e=>{if(e.target===dlg)closeDlg()});document.body.appendChild(dlg);return dlg}
-function palette(){const items=[...scenes.filter(s=>s.nav||s.id==='top'||s.id==='future').map(s=>({l:s.id==='top'?'Home':s.nav||'The future',k:'Go',f:()=>go(s.id)})),...CONTENT.projects.map(p=>({l:'Project: '+p.title,k:'Case study',f:()=>{csOpen=true;selectProject(p.id)}})),{l:'Film room: my last three sixes',k:'Watch',f:()=>go('film')},{l:'Lab: NBA analytics explorer',k:'Demo',f:()=>openLab('a')},{l:'Lab: Cricket physics simulator',k:'Demo',f:()=>openLab('c')},{l:'Recruiter mode (fast summary)',k:'Mode',f:()=>setMode('recruiter')},{l:'Immersive mode (cinematic)',k:'Mode',f:()=>setMode('immersive')},{l:'Quick brief (60-second summary)',k:'Open',f:brief},{l:'How this site works (engineering)',k:'Go',f:()=>go('engine')},{l:'Toggle visual effects',k:'FX',f:toggleFx},{l:'Copy email address',k:'Copy',f:()=>{go('contact');$('#copy').click()}}];
+function palette(){const items=[...scenes.filter(s=>s.nav||s.id==='top'||s.id==='future').map(s=>({l:s.id==='top'?'Home':s.nav||'The future',k:'Go',f:()=>go(s.id)})),...CONTENT.projects.map(p=>({l:'Project: '+p.title,k:'Case study',f:()=>{csOpen=true;selectProject(p.id)}})),{l:'Film room: at the crease',k:'Watch',f:()=>go('film')},{l:'Lab: NBA analytics explorer',k:'Demo',f:()=>openLab('a')},{l:'Lab: Cricket physics simulator',k:'Demo',f:()=>openLab('c')},{l:'Recruiter mode (fast summary)',k:'Mode',f:()=>setMode('recruiter')},{l:'Immersive mode (cinematic)',k:'Mode',f:()=>setMode('immersive')},{l:'Quick brief (60-second summary)',k:'Open',f:brief},{l:'How this site works (engineering)',k:'Go',f:()=>go('engine')},{l:'Toggle visual effects',k:'FX',f:toggleFx},{l:'Copy email address',k:'Copy',f:()=>{go('contact');$('#copy').click()}}];
   const d=openDlg(`<label class="mono" for="pal">Search sections, projects and demos</label><input id="pal" type="text" placeholder="Try “credit”, “cricket” or “recruiter”…" autocomplete="off"><ul id="pall"></ul>`),inp=$('#pal',d),ul=$('#pall',d);let idx=0,list=items;
   const draw=()=>{ul.innerHTML='';list.forEach((it,i)=>{const li=h(`<li><button type="button" class="${i===idx?'act':''}"><span>${esc(it.l)}</span><span class="mono">${it.k}</span></button></li>`);li.firstChild.onclick=()=>{closeDlg();it.f()};ul.appendChild(li)})};
   inp.oninput=()=>{const q=inp.value.toLowerCase();list=items.filter(i=>i.l.toLowerCase().includes(q));idx=0;draw()};
