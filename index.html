@@ -3,10 +3,10 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta charset="utf-8">
-<title>Hemanth Kumar</title>
+<title>Hemi · Hemanth Kumar Gopi</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Hemanth Kumar Gopi: former professional cricketer turned sports analyst. Athlete, analyst, builder. Boston, MA.">
-<meta property="og:title" content="Hemanth Kumar Gopi · Athlete. Analyst. Builder.">
+<meta name="description" content="Hemi (Hemanth Kumar Gopi): former professional cricketer turned sports analyst. Athlete, analyst, builder. Boston, MA.">
+<meta property="og:title" content="Hemi · Athlete. Analyst. Builder.">
 <meta property="og:description" content="Former professional cricketer building a career in sports analytics, machine learning and AI. Boston, MA.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -125,6 +125,8 @@ p strong{color:var(--text)}
 /* hero */
 .hero .col{max-width:760px;gap:20px}
 .hero h1{font-weight:900;font-size:clamp(34px,6.6vw,92px);line-height:.98;text-transform:uppercase}
+.hero h1.hemi{font-size:clamp(72px,13vw,176px);letter-spacing:-.01em;line-height:.9}
+.fullname{margin-top:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver);font-size:13px}
 .tri{font-family:var(--display);font-weight:700;font-size:clamp(20px,3vw,36px);line-height:1.15;display:flex;flex-wrap:wrap;gap:0 18px}
 .tri span:nth-child(1){color:var(--amber)}.tri span:nth-child(2){color:var(--cyan)}.tri span:nth-child(3){color:var(--ice)}
 .hud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;max-width:760px}
@@ -318,7 +320,7 @@ details.cs .csb{display:flex;flex-direction:column;gap:14px;padding-bottom:16px}
 <div class="cur" id="cur" aria-hidden="true"></div>
 
 <div id="intro" role="dialog" aria-label="Introduction">
-  <div class="name sp" data-split style="--d:1.2s">HEMANTH</div>
+  <div class="name sp" data-split style="--d:1.2s">HEMI</div>
   <div class="sub fade" style="--d:2.2s">BEYOND THE GAME.</div>
   <p class="say fade" style="--d:3s">I played the game. Now I study what drives it.</p>
   <div class="acts fade" style="--d:.5s">
@@ -329,7 +331,7 @@ details.cs .csb{display:flex;flex-direction:column;gap:14px;padding-bottom:16px}
 </div>
 
 <header class="top">
-  <a class="brand" href="#top">HEMANTH<i>.</i></a>
+  <a class="brand" href="#top">HEMI<i>.</i></a>
   <nav aria-label="Sections" id="nav"></nav>
   <div class="tools">
     <div class="modes" role="group" aria-label="Experience mode"><button type="button" data-mode="immersive" aria-pressed="true">Immersive</button><button type="button" data-mode="recruiter" aria-pressed="false">Recruiter</button></div>
@@ -343,7 +345,7 @@ details.cs .csb{display:flex;flex-direction:column;gap:14px;padding-bottom:16px}
 
 <main id="main"></main>
 <div id="rec" role="main" aria-label="Recruiter view"></div>
-<footer class="mono">© 2026 Hemanth Kumar Gopi · Chennai → Boston · Built with canvas, math and a lot of cricket</footer>
+<footer class="mono">© 2026 Hemi (Hemanth Kumar Gopi) · Chennai → Boston · Built with canvas, math and a lot of cricket</footer>
 
 <script>
 /* =====================================================================
@@ -551,7 +553,8 @@ function scene(id,label,html,attrs){const s=h(`<section class="sc ${attrs.cls||'
 
 scene('top','Hero',`<div class="col">
   <div class="mono kick rv">Scene 01 · Athlete to analyst to builder</div>
-  <h1 class="rv">Hemanth Kumar Gopi</h1>
+  <h1 class="rv hemi">Hemi</h1>
+  <div class="fullname mono rv">Hemanth Kumar Gopi</div>
   <div class="tri rv"><span>Athlete.</span><span>Analyst.</span><span>Builder.</span></div>
   <p class="rv" style="font-size:19px">Turning a lifetime in sports into a future built with data, technology, and curiosity.</p>
   <div class="row rv"><a class="btn mag" href="#story">Explore my journey</a><a class="btn ghost mag" href="#work">Discover my work</a></div>
@@ -954,8 +957,8 @@ function palette(){const items=[...scenes.filter(s=>s.nav||s.id==='top'||s.id===
   const draw=()=>{ul.innerHTML='';list.forEach((it,i)=>{const li=h(`<li><button type="button" class="${i===idx?'act':''}"><span>${esc(it.l)}</span><span class="mono">${it.k}</span></button></li>`);li.firstChild.onclick=()=>{closeDlg();it.f()};ul.appendChild(li)})};
   inp.oninput=()=>{const q=inp.value.toLowerCase();list=items.filter(i=>i.l.toLowerCase().includes(q));idx=0;draw()};
   inp.onkeydown=e=>{if(e.key==='ArrowDown'){idx=Math.min(list.length-1,idx+1);draw();e.preventDefault()}else if(e.key==='ArrowUp'){idx=Math.max(0,idx-1);draw();e.preventDefault()}else if(e.key==='Enter'&&list[idx]){const f=list[idx].f;closeDlg();f()}};draw();inp.focus()}
-function brief(){const av=CONTENT.portrait?`<img class="mono-av" src="${esc(CONTENT.portrait)}" alt="Portrait of Hemanth Kumar Gopi">`:`<div class="mono-av" aria-hidden="true">HK</div>`;
-  const d=openDlg(`<div class="brief">${av}<div><div class="mono cy">Quick brief</div><h3 style="margin:6px 0 14px">Hemanth Kumar Gopi</h3>
+function brief(){const av=CONTENT.portrait?`<img class="mono-av" src="${esc(CONTENT.portrait)}" alt="Portrait of Hemanth Kumar Gopi">`:`<div class="mono-av" aria-hidden="true">H.</div>`;
+  const d=openDlg(`<div class="brief">${av}<div><div class="mono cy">Quick brief</div><h3 style="margin:6px 0 2px">Hemi</h3><div class="mono" style="margin-bottom:14px;color:var(--silver)">Hemanth Kumar Gopi</div>
   <dl><div><dt>Who</dt><dd>Former professional cricketer (Tamil Nadu Premier League, state-level) with a B.E. in Computer Science, now a sports analyst. Boston, MA; from Chennai, India.</dd></div>
   <div><dt>Now</dt><dd>MS in Business Analytics, Suffolk University (expected May 2027). 2026 MIT Sloan Sports Analytics Conference mentee. Graduate Fellow and teaching assistant; men's basketball program.</dd></div>
   <div><dt>Focus</dt><dd>Sports analytics, predictive modeling, machine learning and computer vision for performance. Interested in the NFL, NBA, MLB and NHL.</dd></div>
@@ -977,7 +980,8 @@ if(FINE&&!RM){window.addEventListener('pointermove',e=>{curEl.classList.add('on'
 function copyTo(out){const t=CONTENT.contact.email;const fb=()=>{out.textContent=t+' (select and copy)'};try{navigator.clipboard.writeText(t).then(()=>{out.textContent='Copied'},fb)}catch(e){fb()}track('copy_email')}
 function renderRec(){const r=$('#rec'),c=CONTENT.contact,sk=(l)=>CONTENT.skills.filter(x=>x.lvl===l).map(x=>`<span class="${l==='x'?'x':''}">${esc(x.n)}</span>`).join('');
   r.innerHTML=`<div class="mono kick">Recruiter mode · 20-second read</div>
-  <h1>Hemanth Kumar Gopi</h1>
+  <h1>Hemi</h1>
+  <div class="mono" style="letter-spacing:.2em;color:var(--silver);margin:-4px 0 10px">HEMANTH KUMAR GOPI</div>
   <p class="lead">${esc(CONTENT.headline)}</p>
   <ul style="margin:16px 0 20px">${CONTENT.pitch.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
   <div class="row" style="align-items:center;margin-bottom:26px"><button class="btn" id="r-copy" type="button">Copy email</button>

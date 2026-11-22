@@ -1,7 +1,7 @@
 <div align="center">
 
-# HEMANTH KUMAR GOPI
-### Beyond the Game
+# HEMI
+### Hemanth Kumar Gopi · Beyond the Game
 
 **Athlete. Analyst. Builder.**
 
@@ -12,7 +12,7 @@
 [![Email](https://img.shields.io/badge/Email-Get%20in%20touch-f59e0b?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hemanthkumargopi55@gmail.com)
 
 <a href="https://hemanthkumargopi.vercel.app">
-  <img src="og.png" alt="Hemanth Kumar Gopi: Athlete. Analyst. Builder." width="820">
+  <img src="og.png" alt="Hemi (Hemanth Kumar Gopi): Athlete. Analyst. Builder." width="820">
 </a>
 
 **[→ Open the live experience](https://hemanthkumargopi.vercel.app)**
@@ -149,7 +149,7 @@ I'm looking for **internships and roles in sports analytics, sports technology a
 
 *"Data didn't replace the work. It told me where to put it."*
 
-© Hemanth Kumar Gopi. All rights reserved.
+© Hemi (Hemanth Kumar Gopi). All rights reserved.
 The design, written content and code in this repository are personal work and may not be reused without permission.
 
 </div>
