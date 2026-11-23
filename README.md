@@ -30,7 +30,7 @@ The site is more than a résumé. It has five parts:
 
 - a scroll-driven story in five chapters
 - a "project universe" of case studies
-- a hands-on analytics playground
+- a hands-on analytics playground, including a soccer scout that runs on real model output
 - a skills map
 - a 20-second Recruiter view for people who just need the facts
 
@@ -44,7 +44,8 @@ The site is more than a résumé. It has five parts:
 | 🎬 | **Story chapters** | Five chapters: *The Athlete → The Question → The Transition → The Analyst → The Builder*, from Chennai to Boston. |
 | 🎯 | **Two modes** | **Immersive** is the full cinematic experience. **Recruiter** is a clean summary you can read in 20 seconds. Both modes draw from the same content. |
 | 🪐 | **Project universe** | Every project opens a structured case study: problem, data, approach, technology, results, limitations and next steps. |
-| 🧪 | **Analytics playground** | Three live, interactive demos: an NBA explorer, cricket ball physics and a prediction demo. Each one says clearly when it uses demonstration data. |
+| ⚽ | **Soccer recruitment scout** | Real output from my [soccer recruitment model](https://github.com/Hemanth-55/Soccer-Player-Recruitment-Model): explore the 2026–27 forecast by position and age, or check the model's accuracy on 189 held-out players. |
+| 🧪 | **Analytics playground** | Three more interactive demos: an NBA explorer, cricket ball physics and a prediction demo. Each one says clearly that it uses demonstration data. |
 | 🏏 | **Cricket ball physics** | The ball's flight is calculated live with real gravity (9.81 m/s²). It is not a pre-made animation. |
 | 🏏 | **The shot** | A scroll-driven interlude: the bat swings, the ball sails into the floodlights and explodes into particles that form the words "Every shot is data." |
 | 🎥 | **Film room** | A short glimpse of real match footage at the crease, playing when it scrolls into view. |
@@ -120,7 +121,7 @@ python3 -m http.server 8000
 
 The site is hosted on **[Vercel](https://vercel.com)** and connected to this repository.
 
-Every push to `main` deploys automatically to **[hemanthkumargopi.vercel.app](https://hemanthkumargopi.vercel.app)**, usually within a minute. There is no build step, so Vercel serves `index.html` exactly as committed.
+Pushes to `main` are deployed to **[hemanthkumargopi.vercel.app](https://hemanthkumargopi.vercel.app)**, usually within a minute. There is no build step, so Vercel serves `index.html` exactly as committed.
 
 ---
 
