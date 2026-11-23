@@ -1,13 +1,12 @@
+<a href="https://hemanthkumargopi.vercel.app"><img src="docs/banner.svg" alt="HEMI — Hemanth Kumar Gopi. Pro cricketer, sports analyst, builder." width="100%"></a>
+
 <div align="center">
 
-# HEMI
 ### Hemanth Kumar Gopi · Beyond the Game
 
-**Athlete. Analyst. Builder.**
+*Professional cricketer building a career in sports analytics, machine learning and AI.*
 
-*Former professional cricketer, now building a career in sports analytics, machine learning and AI.*
-
-[![Live site](https://img.shields.io/badge/Live%20site-hemanthkumargopi.vercel.app-22d3ee?style=for-the-badge&logo=vercel&logoColor=white)](https://hemanthkumargopi.vercel.app)
+[![Live site](https://img.shields.io/badge/Live%20site-hemanthkumargopi.vercel.app-35E0FF?style=for-the-badge&labelColor=04060B&logo=vercel&logoColor=35E0FF)](https://hemanthkumargopi.vercel.app)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-hemanthkumargopi-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hemanthkumargopi)
 [![Email](https://img.shields.io/badge/Email-Get%20in%20touch-f59e0b?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hemanthkumargopi55@gmail.com)
 
@@ -23,9 +22,9 @@
 
 ## About this project
 
-This repository holds my personal portfolio: an interactive, cinematic website that tells the story of my move from professional cricket into sports analytics.
+This repository holds my personal portfolio: an interactive, cinematic website that tells the story of a professional cricketer building a second game in sports analytics.
 
-I spent seven years in competitive cricket. That included state-level cricket with the Tamil Nadu Cricket Association and the Tamil Nadu Premier League with Dindigul Dragons. I hold a B.E. in Computer Science, was selected for the 2026 MIT Sloan Sports Analytics Conference Mentorship Program, and am now pursuing an MS in Business Analytics at Suffolk University in Boston. The site is built the way I like to work: it starts with a story and is backed by data. Every visual on it is generated in code.
+I've played competitive cricket for 7+ years: state-level cricket with the Tamil Nadu Cricket Association and the Tamil Nadu Premier League with Dindigul Dragons, and now the Massachusetts State Cricket League and the Charlotte Premier League in the US. I hold a B.E. in Computer Science, was selected for the 2026 MIT Sloan Sports Analytics Conference Mentorship Program, and am now pursuing an MS in Business Analytics at Suffolk University in Boston. The site is built the way I like to work: it starts with a story and is backed by data. Every visual on it is generated in code.
 
 The site is more than a résumé. It has five parts:
 
