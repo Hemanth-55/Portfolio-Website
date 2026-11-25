@@ -11,6 +11,7 @@ Claude: read this file, then `notes/`, at the start of every session.
 - Each module runs in its own error boundary. Keep it that way.
 
 ## Quality bar (non-negotiable)
+- **North star:** Hemi is becoming a consultant / advisor to the sports industry. Frame every output (README, demo, deck, résumé line) as decision → data → logic → recommendation → impact. See https://github.com/Hemanth-55/Tamil-/blob/main/notes/north-star.md
 - Apple-level: subtle, minimal, professional, futuristic, interactive. Clear to a layman at a glance.
 - Speak to tech people. No gimmicks.
 - Never describe projects as done at BU.
