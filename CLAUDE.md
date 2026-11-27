@@ -8,6 +8,7 @@ Claude: read this file, then `notes/`, at the start of every session.
 - One file: `index.html` (hand-written HTML/CSS/JS, no frameworks, no build step). `og.png` is the share card; `media/` holds match clips and their posters.
 - All text lives in two objects near the top of the script: `CONTENT` (story, experience, skills, contact) and `CASES` (project case studies). Change words there, not in the layout.
 - Features: HEMI fly-through entrance into a layered avatar hero (media/hemi-cut, hemi-bg; sunset palette), canvas particle engine (2,600 desktop / 1,300 mobile), five story chapters, Immersive and Recruiter modes, project universe, analytics playground (soccer scout on real model output), ⌘K command menu, phone edition.
+- `hq/index.html`: Cric Secrets HQ, a 3D office of the AI-agent company (Three.js 0.160 from jsDelivr; the only page with a dependency). Public content only: idea, roles, roadmap, held-out model results.
 - Each module runs in its own error boundary. Keep it that way.
 
 ## Quality bar (non-negotiable)

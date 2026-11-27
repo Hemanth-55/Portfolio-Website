@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cric Secrets HQ · Hemi</title>
+<meta name="description" content="Walk into Cric Secrets HQ: a cricket decision-intelligence company Hemi is building, run by a team of AI agents.">
+<meta name="theme-color" content="#12060F">
+<meta property="og:title" content="Cric Secrets HQ">
+<meta property="og:description" content="A cricket decision-intelligence company run by AI agents. Work in progress, built in the open.">
+<meta property="og:image" content="https://hemanthkumargopi.vercel.app/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--night:#12060F;--plum:#24091E;--panel:rgba(30,10,26,.82);--line:rgba(255,200,190,.12);--ink:#FFF3EA;--mute:#C99AA6;--magenta:#FF3D7F;--gold:#FFC857;--teal:#2EC4B6;--coral:#FF7A5C;
+  --sunset:linear-gradient(100deg,#FF3D7F,#FF7A5C 45%,#FFC857);--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;--body:"Manrope",system-ui,sans-serif;--eo:cubic-bezier(.16,1,.3,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--night);color:var(--ink);font-family:var(--body);overflow:hidden;-webkit-font-smoothing:antialiased}
+canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#labels{position:fixed;inset:0;pointer-events:none}
+.tag{font:500 11px var(--mono);letter-spacing:.08em;padding:5px 9px;border-radius:999px;background:rgba(18,6,15,.78);border:1px solid var(--line);color:var(--ink);white-space:nowrap;transform:translateY(-6px);transition:opacity .25s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.tag b{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;vertical-align:1px}
+.tag.dept{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);background:none;border:0;backdrop-filter:none}
+.tag.agent{opacity:0}
+.tag.agent.on{opacity:1}
+a{color:inherit}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
+
+header{position:fixed;left:20px;top:18px;right:20px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;pointer-events:none;z-index:5}
+header>*{pointer-events:auto}
+.brand h1{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(30px,3.6vw,52px);line-height:.95;letter-spacing:.01em;text-transform:uppercase}
+.brand h1 span{background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand p{margin-top:8px;color:#EFD3CF;font-size:14px;line-height:1.5;max-width:44ch}
+.brand .wip{display:inline-flex;align-items:center;gap:8px;margin-top:10px;color:var(--mute)}
+.brand .wip i{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(18,6,15,.6);color:var(--ink);font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:border-color .2s,background .2s}
+.btn:hover{border-color:rgba(255,200,190,.35)}
+.btn.pri{background:var(--magenta);border-color:var(--magenta);color:#12060F}
+.acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+
+/* staff directory: the accessible way in */
+#dir{position:fixed;left:20px;bottom:20px;z-index:5;width:min(330px,calc(100vw - 40px));max-height:52vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+#dir h2{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:4px 4px 10px;cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+#dir h2::after{content:'–';color:var(--ink)}#dir.min h2::after{content:'+'}#dir.min h2{margin-bottom:4px}
+#dir.min ul{display:none}
+#dir ul{list-style:none;display:grid;gap:2px}
+#dir button{width:100%;display:flex;align-items:center;gap:10px;text-align:left;padding:8px 10px;border-radius:10px;border:0;background:none;color:var(--ink);font:500 14px var(--body);cursor:pointer}
+#dir button small{margin-left:auto;color:var(--mute);font:400 10px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+#dir button:hover,#dir button[aria-pressed=true]{background:rgba(255,255,255,.06)}
+#dir button i{width:9px;height:9px;border-radius:50%;flex:none}
+#dir .sec{margin:10px 4px 4px;color:var(--mute);font:400 10px var(--mono);letter-spacing:.14em;text-transform:uppercase}
+
+/* detail panel */
+#panel{position:fixed;right:20px;bottom:20px;z-index:6;width:min(380px,calc(100vw - 40px));background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px 20px 18px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);transform:translateY(16px);opacity:0;pointer-events:none;transition:opacity .35s var(--eo),transform .5s var(--eo)}
+#panel.open{opacity:1;transform:none;pointer-events:auto}
+#panel .dep{display:flex;align-items:center;gap:8px;color:var(--mute)}
+#panel .dep i{width:8px;height:8px;border-radius:50%}
+#panel h3{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:34px;line-height:1;letter-spacing:.01em;text-transform:uppercase;margin:10px 0 8px}
+#panel p{color:#EFD3CF;font-size:14.5px;line-height:1.55}
+#panel .now{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+#panel .now span{display:block;color:var(--gold);margin-bottom:4px}
+#panel .x{position:absolute;right:12px;top:12px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);cursor:pointer;font-size:16px}
+#hint{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:4;color:var(--mute);pointer-events:none;transition:opacity .6s}
+#loading{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:var(--night);transition:opacity .8s}
+#loading div{font-family:Anton,Impact,sans-serif;font-size:clamp(40px,8vw,90px);letter-spacing:.02em;background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
+#loading.done{opacity:0;pointer-events:none}
+#nogl{display:none;position:fixed;inset:0;z-index:30;place-items:center;padding:24px;text-align:center;background:var(--night)}
+@media (max-width:820px){
+  .brand p{display:none}
+  #dir{max-height:30vh;bottom:12px;left:12px;width:calc(100vw - 24px);padding:10px}
+  #panel{left:12px;right:12px;bottom:12px;width:auto}
+  #hint{display:none}
+  header{left:14px;right:14px;top:14px}
+  .acts .btn:not(.pri){display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body>
+<div id="loading" aria-hidden="true"><div>CRIC SECRETS HQ</div></div>
+<canvas id="gl" aria-label="3D office of Cric Secrets: AI agents working at their desks. Use the staff directory to visit each agent." role="img"></canvas>
+<div id="labels" aria-hidden="true"></div>
+
+<header>
+  <div class="brand">
+    <h1>Cric Secrets <span>HQ</span></h1>
+    <p>A cricket decision-intelligence company I'm building, run by a team of AI agents. First question: chasing 20 off 6, who should walk out next?</p>
+    <div class="wip mono"><i></i>Work in progress · built in the open</div>
+  </div>
+  <div class="acts"><a class="btn" href="/#work">← Portfolio</a><button class="btn" id="tour" type="button">Tour</button><button class="btn pri" id="warroom" type="button">War room</button></div>
+</header>
+
+<nav id="dir" aria-label="Staff directory"><h2><span>Staff directory · 14 people, 13 AI</span></h2><ul id="dirl"></ul></nav>
+
+<aside id="panel" aria-live="polite" aria-label="Agent details"><button class="x" id="px" type="button" aria-label="Close">×</button><div id="pbody"></div></aside>
+<div id="hint" class="mono">Drag to look around · click a desk to meet the agent</div>
+<div id="nogl" role="alert"><div><p style="font-size:18px;margin-bottom:14px">Your browser can't show the 3D office.</p><a class="btn pri" href="/#work">Back to the portfolio</a></div></div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SMALL = innerWidth < 820;
+const $ = s => document.querySelector(s);
+
+/* ---------- the company (public, plain English) ---------- */
+const DEPTS = {
+  lead:   { name: 'Leadership',          color: '#FFC857' },
+  strat:  { name: 'Strategy & Research', color: '#FF7A5C' },
+  data:   { name: 'Data & Models',       color: '#2EC4B6' },
+  prod:   { name: 'Product',             color: '#FF3D7F' },
+  part:   { name: 'Partnerships & Brand',color: '#F59ECF' },
+  ops:    { name: 'Finance & Legal',     color: '#B9A3FF' },
+  sec:    { name: 'Security & Red Team', color: '#8FE3A1' },
+};
+const AGENTS = [
+  { id:'hemi', name:'Hemi', role:'Founder', d:'lead', human:true, job:'Makes the calls the agents can\'t: cricket judgment, approvals, relationships. Professional cricketer, MS Business Analytics student.', now:'Checking whether the model\'s picks make cricket sense before any case study goes out.' },
+  { id:'tamil', name:'Tamil CEO', role:'Runs the agents', d:'lead', job:'Watches every agent and brings Hemi anything that needs a yes. Nothing leaves the company without his approval.', now:'Writing the weekly report: what each agent shipped, and what is waiting for a decision.' },
+  { id:'cos', name:'Chief of Staff', role:'Day-to-day operations', d:'strat', walker:true, job:'Plans the week, hands out work, tracks progress and keeps the approval queue.', now:'Moving the team from Phase 1 (first models) to Phase 2 (a demo people can try).' },
+  { id:'strategist', name:'Cricket Strategist', role:'The cricket truth', d:'strat', job:'Checks that every model output makes cricket sense: situations, match-ups, roles.', now:'Building a library of chase situations, from 20 off 6 to 60 off 36.' },
+  { id:'research', name:'Research Analyst', role:'Market & customers', d:'strat', job:'Maps leagues, franchises, broadcasters and competitors, and who would pay for a better decision.', now:'Market map: US and associate leagues first, then T20 franchises.' },
+  { id:'scout', name:'Strategy Scout', role:'New perspectives', d:'strat', job:'Brings fresh angles every week: customers, data, products and risks.', now:'Exploring how broadcasters could use "who should bat next?" on air.' },
+  { id:'data', name:'Data Engineer', role:'Pipelines', d:'data', job:'Turns free, public ball-by-ball data (Cricsheet) into clean tables the models can trust.', now:'6,743 men\'s T20 matches and 1.55 million deliveries cleaned and loaded.' },
+  { id:'model', name:'Modeling Scientist', role:'Win probability & next batter', d:'data', job:'Builds the models and tests them honestly on matches they have never seen.', now:'Win probability: AUC 0.915 on 2,451 chases from 2024 on (0.973 in the last 4 overs). Next: pace and spin match-ups.' },
+  { id:'design', name:'Product Designer', role:'Demo & apps', d:'prod', job:'Designs the product so a captain can read it in two seconds: decision first, numbers second.', now:'Designing the Next-Batter Engine demo. Also built this office.' },
+  { id:'partner', name:'Partnerships Lead', role:'Pilots', d:'part', job:'Drafts pilot proposals and outreach. Nothing is sent without Hemi\'s approval.', now:'Preparing a free pilot offer for the clubs Hemi plays with.' },
+  { id:'brand', name:'Brand & Content', role:'Case studies', d:'part', job:'Turns the work into case studies and posts that show the thinking.', now:'Three famous chases, re-played with the model, once a cricket expert agrees with the picks.' },
+  { id:'finance', name:'Finance & Legal Ops', role:'Costs & licences', d:'ops', job:'Pricing, costs and data licences. Flags when a real lawyer or accountant is needed.', now:'Keeping the licence register: open data, properly attributed. Running cost so far: $0 beyond one Claude plan.' },
+  { id:'security', name:'Security Officer', role:'Security desk', d:'sec', job:'Reviews every new tool, data source and connection before the company uses it.', now:'Reviewing tools before they join the company.' },
+  { id:'red', name:'Red Team', role:'Attacks every claim', d:'sec', walker:true, job:'Tries to break every number, model and pitch before it leaves the building.', now:'Flagged that the next-batter model sometimes picks tail-enders. A role guard now blocks weak picks.' },
+];
+
+/* ---------- renderer ---------- */
+const canvas = $('#gl');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ canvas, antialias: !SMALL, powerPreference: 'high-performance' }) }
+catch (e) { $('#nogl').style.display = 'grid'; $('#loading').remove(); throw e }
+renderer.setPixelRatio(Math.min(devicePixelRatio || 1, SMALL ? 1.5 : 1.75));
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = !SMALL; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+const labels = new CSS2DRenderer({ element: $('#labels') }); labels.setSize(innerWidth, innerHeight);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#12060F');
+scene.fog = new THREE.Fog('#12060F', 48, 95);
+const camera = new THREE.PerspectiveCamera(SMALL ? 52 : 38, innerWidth / innerHeight, .1, 200);
+const HOME = { pos: new THREE.Vector3(SMALL ? 30 : 26, SMALL ? 30 : 22, SMALL ? 30 : 26), tgt: new THREE.Vector3(0, 0, 0) };
+camera.position.copy(HOME.pos);
+const controls = new OrbitControls(camera, canvas);
+controls.target.copy(HOME.tgt); controls.enableDamping = true; controls.dampingFactor = .07;
+controls.minDistance = 8; controls.maxDistance = 60; controls.maxPolarAngle = 1.32; controls.minPolarAngle = .35;
+controls.autoRotate = !RM; controls.autoRotateSpeed = .35; controls.screenSpacePanning = false;
+
+/* ---------- light: the office at sunset ---------- */
+scene.add(new THREE.HemisphereLight('#FFB59A', '#2A0F24', .75));
+const sun = new THREE.DirectionalLight('#FFB070', 2.2); sun.position.set(-8, 16, -24);
+sun.castShadow = !SMALL; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -26, right: 26, top: 20, bottom: -20, near: 1, far: 70 }); sun.shadow.bias = -.0004;
+scene.add(sun);
+const fill = new THREE.PointLight('#FF3D7F', 40, 30, 2); fill.position.set(0, 7, 4); scene.add(fill);
+
+const mat = (c, o = {}) => new THREE.MeshStandardMaterial({ color: c, roughness: .7, metalness: .05, ...o });
+const M = {
+  floor: mat('#2A1020', { roughness: .45, metalness: .25 }), wall: mat('#1E0A1A', { roughness: .9 }), desk: mat('#F3E4DA', { roughness: .5 }), leg: mat('#3A1230', { metalness: .4 }),
+  chair: mat('#2B2430', { roughness: .6 }), glass: new THREE.MeshPhysicalMaterial({ color: '#FFD9CC', transmission: .9, roughness: .08, thickness: .1, transparent: true, opacity: .22 }),
+  wood: mat('#8A4A2C', { roughness: .6 }), screen: mat('#111'), plant: mat('#2E7D5B'), pot: mat('#E8D3C4'), skin: mat('#FFE6D6', { roughness: .55 }),
+};
+const box = (w, h, d, m) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); o.castShadow = o.receiveShadow = true; return o };
+const add = (o, x = 0, y = 0, z = 0, p = scene) => { o.position.set(x, y, z); p.add(o); return o };
+
+/* ---------- the building ---------- */
+const W = 40, D = 28;
+const floor = add(box(W, .4, D, M.floor), 0, -.2, 0); floor.castShadow = false;
+// floor inlay: a cricket pitch running through the office
+const pitch = add(new THREE.Mesh(new THREE.PlaneGeometry(3, 20.12 * .7), mat('#C9A27E', { roughness: .9 })), 0, .01, 2); pitch.rotation.x = -Math.PI / 2; pitch.receiveShadow = true;
+[-1, 1].forEach(s => { const c = add(new THREE.Mesh(new THREE.PlaneGeometry(3.2, .06), mat('#FFF3EA')), 0, .02, 2 + s * 6.2); c.rotation.x = -Math.PI / 2 });
+add(box(W, 7, .4, M.wall), 0, 3.5, D / 2);            // south wall (behind camera, kept low-profile)
+add(box(.4, 7, D, M.wall), W / 2, 3.5, 0);             // east wall
+const west = add(box(.4, 7, D, M.wall), -W / 2, 3.5, 0); // west wall carries the big screen
+// north: floor-to-ceiling window onto a sunset
+const skyMat = new THREE.ShaderMaterial({ uniforms: { t: { value: 0 } }, vertexShader: `varying vec2 v;void main(){v=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+  fragmentShader: `varying vec2 v;uniform float t;void main(){vec3 a=vec3(.16,.05,.14),b=vec3(.72,.16,.28),c=vec3(1.,.53,.36),d=vec3(1.,.8,.4);float y=v.y;vec3 col=mix(d,c,smoothstep(.0,.28,y));col=mix(col,b,smoothstep(.28,.62,y));col=mix(col,a,smoothstep(.62,1.,y));
+  float s=distance(v*vec2(2.6,1.),vec2(1.3,.2));col+=vec3(1.,.75,.4)*smoothstep(.16,.0,s)*.9;
+  float cl=sin(v.x*18.+t*.05)*.5+.5;col=mix(col,b*.8,smoothstep(.55,.6,y)*smoothstep(.66,.6,y)*cl*.5);gl_FragColor=vec4(col,1.);}` });
+const sky = add(new THREE.Mesh(new THREE.PlaneGeometry(W * 1.6, 22), skyMat), 0, 8, -D / 2 - 9);
+// skyline silhouettes outside the window
+const sil = mat('#3A0F28', { roughness: 1 });
+for (let i = 0; i < 26; i++) { const h = 1.2 + Math.random() * 3.6, w = 1 + Math.random() * 2.2; add(box(w, h, 1, sil), -W * .7 + i * (W * 1.4 / 26) + Math.random(), h / 2 - .5, -D / 2 - 5 - Math.random() * 2) }
+// window mullions + glass
+for (let x = -W / 2; x <= W / 2; x += 4) add(box(.18, 7, .18, M.leg), x, 3.5, -D / 2);
+add(box(W, .2, .3, M.leg), 0, 7, -D / 2); add(box(W, .3, .3, M.leg), 0, .15, -D / 2);
+add(new THREE.Mesh(new THREE.PlaneGeometry(W, 7), M.glass), 0, 3.5, -D / 2 + .05);
+
+/* ---------- canvas textures for screens ---------- */
+function canvasTex(w, h, draw) { const c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d'); draw(x, w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; t.userData = { c, x, draw }; return t }
+const FONT = '"Manrope",system-ui,sans-serif', MONO = '"JetBrains Mono",monospace', DISP = 'Anton,Impact,sans-serif';
+
+// the war-room wall: real test results of the win-probability model
+const CAL = [[.03,.03],[.15,.18],[.25,.32],[.35,.40],[.45,.50],[.55,.60],[.65,.68],[.75,.77],[.85,.83],[.98,.98]];
+const wallTex = canvasTex(1600, 900, (x, w, h) => {
+  const g = x.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#1B0816'); g.addColorStop(1, '#2C0C24'); x.fillStyle = g; x.fillRect(0, 0, w, h);
+  x.fillStyle = '#FFC857'; x.font = `500 26px ${MONO}`; x.fillText('MODEL 01 · CHASE WIN PROBABILITY', 70, 90);
+  x.fillStyle = '#FFF3EA'; x.font = `400 92px ${DISP}`; x.fillText('CHASING 20 OFF 6.', 70, 200); x.fillText('WHO WALKS OUT NEXT?', 70, 300);
+  const st = [['0.915', 'AUC on 2,451 chases from 2024 on, never used in training'], ['0.973', 'AUC in the last 4 overs, where calls matter most'], ['1.55M', 'deliveries from 6,743 men\'s T20 matches (Cricsheet)']];
+  st.forEach(([n, l], i) => { const y = 430 + i * 140; x.fillStyle = i === 0 ? '#FF3D7F' : i === 1 ? '#FF7A5C' : '#FFC857'; x.font = `400 84px ${DISP}`; x.fillText(n, 70, y); x.fillStyle = '#EFD3CF'; x.font = `500 26px ${FONT}`; x.fillText(l, 330, y - 22) });
+  // calibration chart
+  const L = 980, T = 140, S = 520; x.strokeStyle = 'rgba(255,200,190,.25)'; x.lineWidth = 2; x.strokeRect(L, T, S, S);
+  x.setLineDash([8, 10]); x.beginPath(); x.moveTo(L, T + S); x.lineTo(L + S, T); x.stroke(); x.setLineDash([]);
+  x.strokeStyle = '#FF3D7F'; x.lineWidth = 5; x.beginPath(); CAL.forEach(([p, a], i) => { const px = L + p * S, py = T + S - a * S; i ? x.lineTo(px, py) : x.moveTo(px, py) }); x.stroke();
+  CAL.forEach(([p, a]) => { x.fillStyle = '#FFC857'; x.beginPath(); x.arc(L + p * S, T + S - a * S, 9, 0, 7); x.fill() });
+  x.fillStyle = '#EFD3CF'; x.font = `500 24px ${FONT}`; x.fillText('Predicted vs actual win rate (test set)', L, T + S + 50);
+  x.fillStyle = '#C99AA6'; x.font = `400 22px ${FONT}`; x.fillText('On the dashed line = the model\'s % comes true.', L, T + S + 86);
+  x.fillStyle = '#C99AA6'; x.font = `500 20px ${MONO}`; x.fillText('REAL RESULTS · NEXT-BATTER MODEL IS STILL A DECISION AID, NOT AN ORACLE', 70, h - 50);
+});
+const wall = add(new THREE.Mesh(new THREE.PlaneGeometry(12.8, 7.2), new THREE.MeshBasicMaterial({ map: wallTex, toneMapped: false })), -W / 2 + .25, 3.9, 0);
+wall.rotation.y = Math.PI / 2;
+add(box(.2, 7.6, 13.2, mat('#0C0309', { metalness: .6, roughness: .3 })), -W / 2 + .12, 3.9, 0);
+
+// roadmap board on the east wall
+const PH = [['0', 'Foundations', 'Blueprint, AI org, data plan', 1], ['1', 'First models', 'Win probability + next batter', 2], ['2', 'Proof', 'Demo + 3 famous chases', 0], ['3', 'Pilots', 'Clubs Hemi plays with', 0], ['4', 'Franchises', 'MLC · TNPL · CPL', 0], ['5', 'Performance data', 'Tracking, fitness, with consent', 0], ['6', 'Company', 'When revenue justifies it', 0]];
+const roadTex = canvasTex(1400, 800, (x, w, h) => {
+  x.fillStyle = '#1B0816'; x.fillRect(0, 0, w, h); x.fillStyle = '#FFC857'; x.font = `500 26px ${MONO}`; x.fillText('ROADMAP', 60, 80);
+  x.fillStyle = '#FFF3EA'; x.font = `400 70px ${DISP}`; x.fillText('FROM A MODEL TO A COMPANY', 60, 165);
+  PH.forEach(([n, t, s, st], i) => { const y = 250 + i * 78; x.fillStyle = st === 1 ? '#2EC4B6' : st === 2 ? '#FF3D7F' : 'rgba(255,200,190,.25)'; x.beginPath(); x.arc(80, y - 10, 14, 0, 7); x.fill();
+    x.fillStyle = st ? '#FFF3EA' : '#C99AA6'; x.font = `700 32px ${FONT}`; x.fillText(`Phase ${n} · ${t}`, 120, y); x.fillStyle = '#C99AA6'; x.font = `400 26px ${FONT}`; x.fillText(s, 620, y);
+    if (st === 1) { x.fillStyle = '#2EC4B6'; x.font = `500 20px ${MONO}`; x.fillText('DONE', 1220, y) } if (st === 2) { x.fillStyle = '#FF3D7F'; x.font = `500 20px ${MONO}`; x.fillText('NOW', 1220, y) } });
+});
+const road = add(new THREE.Mesh(new THREE.PlaneGeometry(10.5, 6), new THREE.MeshBasicMaterial({ map: roadTex, toneMapped: false })), W / 2 - .25, 3.9, 4); road.rotation.y = -Math.PI / 2;
+
+/* ---------- furniture ---------- */
+function monitorTex(color) { return canvasTex(256, 160, (x, w, h) => { x.fillStyle = '#140510'; x.fillRect(0, 0, w, h); x.fillStyle = color; x.fillRect(0, 0, w, 10);
+  for (let i = 0; i < 9; i++) { x.globalAlpha = .35 + Math.random() * .5; x.fillRect(16, 24 + i * 14, 40 + Math.random() * 170, 6) } x.globalAlpha = 1 }) }
+function desk(x, z, rot, color) {
+  const g = new THREE.Group(); g.position.set(x, 0, z); g.rotation.y = rot; scene.add(g);
+  add(box(1.9, .08, .9, M.desk), 0, .76, 0, g);
+  [[-.85, -.38], [.85, -.38], [-.85, .38], [.85, .38]].forEach(([a, b]) => add(box(.06, .76, .06, M.leg), a, .38, b, g));
+  const tex = monitorTex(color); const mon = add(new THREE.Mesh(new THREE.PlaneGeometry(1.05, .62), new THREE.MeshBasicMaterial({ map: tex, toneMapped: false })), 0, 1.25, -.3, g);
+  add(box(1.1, .68, .04, M.screen), 0, 1.25, -.33, g); add(box(.06, .3, .06, M.leg), 0, .92, -.34, g);
+  const glow = add(new THREE.PointLight(color, 1.6, 3, 2), 0, 1.3, .1, g);
+  // chair
+  const ch = new THREE.Group(); add(ch, 0, 0, .75, g);
+  add(box(.6, .08, .55, M.chair), 0, .5, 0, ch); add(box(.6, .65, .08, M.chair), 0, .86, .26, ch); add(box(.05, .45, .05, M.leg), 0, .25, 0, ch);
+  return { g, mon, tex, glow, seat: new THREE.Vector3(0, .5, .75).applyMatrix4(new THREE.Matrix4().makeRotationY(rot)).add(new THREE.Vector3(x, 0, z)), rot };
+}
+function plant(x, z, s = 1) { const g = new THREE.Group(); add(g, x, 0, z); add(new THREE.Mesh(new THREE.CylinderGeometry(.3 * s, .24 * s, .5 * s, 12), M.pot), 0, .25 * s, 0, g);
+  for (let i = 0; i < 6; i++) { const l = add(new THREE.Mesh(new THREE.ConeGeometry(.16 * s, 1.1 * s, 5), M.plant), Math.cos(i) * .12 * s, .9 * s, Math.sin(i) * .12 * s, g); l.rotation.set(Math.cos(i * 2) * .5, 0, Math.sin(i * 2) * .5); l.castShadow = true } }
+
+/* ---------- people ---------- */
+function person(color, human) {
+  const g = new THREE.Group();
+  const body = new THREE.Mesh(new THREE.CapsuleGeometry(.24, .5, 4, 12), mat(color, { roughness: .45 })); body.position.y = .62; body.castShadow = true; g.add(body);
+  const head = new THREE.Mesh(new THREE.SphereGeometry(.2, 20, 16), M.skin); head.position.y = 1.2; head.castShadow = true; g.add(head);
+  if (human) { const hair = new THREE.Mesh(new THREE.SphereGeometry(.215, 20, 16, 0, Math.PI * 2, 0, 1.6), mat('#1A0E0C', { roughness: .9 })); hair.position.y = 1.23; hair.rotation.x = .25; g.add(hair) }
+  else { const visor = new THREE.Mesh(new THREE.BoxGeometry(.3, .07, .1), new THREE.MeshBasicMaterial({ color, toneMapped: false })); visor.position.set(0, 1.22, -.16); g.add(visor) }
+  const ring = new THREE.Mesh(new THREE.RingGeometry(.42, .5, 32), new THREE.MeshBasicMaterial({ color: '#FFC857', transparent: true, opacity: 0, side: THREE.DoubleSide, toneMapped: false })); ring.rotation.x = -Math.PI / 2; ring.position.y = .03; g.add(ring);
+  g.userData.ring = ring; g.userData.body = body; return g;
+}
+
+/* ---------- layout: pods around the war room ---------- */
+const POS = {
+  hemi: [14.5, -9.5, Math.PI], tamil: [11.5, -9.5, Math.PI],
+  cos: [-6, -8, Math.PI], strategist: [-9, -8, Math.PI], research: [-12, -8, Math.PI], scout: [-15, -8, Math.PI],
+  data: [-12, 6.5, 0], model: [-9, 6.5, 0],
+  design: [8, 6.5, 0],
+  partner: [12, 6.5, 0], brand: [15, 6.5, 0],
+  finance: [-4, 10, 0], security: [4, 10, 0], red: [7, 10, 0],
+};
+const ROSTER = [];
+AGENTS.forEach(a => {
+  const [x, z, r] = POS[a.id], col = DEPTS[a.d].color, dk = desk(x, z, r, col), p = person(col, a.human);
+  p.position.copy(dk.seat); p.rotation.y = r; scene.add(p);
+  p.traverse(o => { o.userData.agent = a.id });
+  dk.g.traverse(o => { o.userData.agent = a.id });
+  const el = document.createElement('div'); el.className = 'tag agent'; el.innerHTML = `<b style="background:${col}"></b>${a.name}`;
+  const tag = new CSS2DObject(el); tag.position.set(0, 1.75, 0); p.add(tag);
+  ROSTER.push({ a, p, dk, el, home: p.position.clone(), phase: Math.random() * 6 });
+});
+// glass office for leadership
+const go = new THREE.Group(); add(go, 13, 0, -9.2);
+const gw = (w, x, z, ry) => { const m = add(new THREE.Mesh(new THREE.PlaneGeometry(w, 3.2), M.glass), x, 1.6, z, go); m.rotation.y = ry };
+gw(9.4, 0, 3.2, 0); gw(6.4, -4.7, 0, Math.PI / 2);
+add(box(9.4, .08, .08, M.leg), 0, 3.2, 3.2, go); add(box(.08, .08, 6.4, M.leg), -4.7, 3.2, 0, go);
+const sign = canvasTex(1024, 160, (x, w, h) => { x.fillStyle = '#FFC857'; x.font = `400 92px ${DISP}`; x.textAlign = 'center'; x.fillText('TAMIL SPORTS NETWORK', w / 2, 112) });
+const sg = add(new THREE.Mesh(new THREE.PlaneGeometry(6, .95), new THREE.MeshBasicMaterial({ map: sign, transparent: true, toneMapped: false })), 13, 4.4, -13.7);
+// founder desk props: a bat and a ball
+const bat = add(box(.11, .9, .04, M.wood), 15.4, .55, -9.9); bat.rotation.z = .25; const handle = add(new THREE.Mesh(new THREE.CylinderGeometry(.025, .025, .36, 8), mat('#1A0E0C')), 15.53, 1.12, -9.9); handle.rotation.z = .25;
+add(new THREE.Mesh(new THREE.SphereGeometry(.07, 16, 12), mat('#C8102E', { roughness: .4 })), 14.9, .87, -9.7);
+
+// war room: round table, holographic win-probability rings
+const war = new THREE.Group(); add(war, 0, 0, -1.5);
+add(new THREE.Mesh(new THREE.CylinderGeometry(2.4, 2.4, .1, 48), M.desk), 0, .78, 0, war).castShadow = true;
+add(new THREE.Mesh(new THREE.CylinderGeometry(.3, .4, .78, 16), M.leg), 0, .39, 0, war);
+for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2, c = new THREE.Group(); add(c, Math.cos(a) * 3, 0, Math.sin(a) * 3, war); add(box(.55, .08, .5, M.chair), 0, .5, 0, c); add(box(.55, .5, .08, M.chair), 0, .78, .24, c); c.rotation.y = -a - Math.PI / 2 }
+const holo = new THREE.Group(); add(holo, 0, 1.6, 0, war);
+const hm = c => new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: .75, side: THREE.DoubleSide, toneMapped: false, depthWrite: false });
+[[1.5, '#FF3D7F'], [1.1, '#FFC857'], [.7, '#2EC4B6']].forEach(([r, c], i) => { const t = new THREE.Mesh(new THREE.TorusGeometry(r, .02, 8, 96), hm(c)); t.rotation.x = Math.PI / 2 + i * .25; t.userData.spin = (i % 2 ? -1 : 1) * (.3 + i * .15); holo.add(t) });
+// bars: win % for 20 off 6 by wickets left (from the model's sanity check)
+[[2, 1.9], [5, 9.2], [8, 13.6]].forEach(([wk, v], i) => { const h = .3 + v / 13.6 * 1.1; const b = new THREE.Mesh(new THREE.BoxGeometry(.22, h, .22), hm(['#FF3D7F', '#FF7A5C', '#FFC857'][i])); b.position.set(-.4 + i * .4, -.75 + h / 2, 0); holo.add(b) });
+const hlab = document.createElement('div'); hlab.className = 'tag'; hlab.innerHTML = '<b style="background:#FFC857"></b>20 off 6 · win % with 2 / 5 / 8 wickets left: 1.9 / 9.2 / 13.6'; hlab.style.whiteSpace = 'normal'; hlab.style.maxWidth = '190px'; hlab.style.borderRadius = '12px'; hlab.style.lineHeight = '1.5';
+const hl = new CSS2DObject(hlab); hl.position.set(0, 1.5, 0); holo.add(hl);
+
+// lounge: sofas facing the sunset, plants, an arcade cabinet
+const sofa = (x, z, r) => { const g = new THREE.Group(); add(g, x, 0, z); g.rotation.y = r; add(box(2.6, .45, .9, mat('#5A1434')), 0, .3, 0, g); add(box(2.6, .6, .25, mat('#5A1434')), 0, .7, .35, g); };
+sofa(-3, -11.5, Math.PI); sofa(3, -11.5, Math.PI);
+const arc = add(box(.9, 2, .8, mat('#24091E', { metalness: .3 })), 18.5, 1, 1); const arcScr = add(new THREE.Mesh(new THREE.PlaneGeometry(.7, .55), new THREE.MeshBasicMaterial({ color: '#2EC4B6', toneMapped: false })), 18.04, 1.4, 1); arcScr.rotation.y = -Math.PI / 2;
+[[-18.5, -12], [18.5, -12], [-18.5, 12], [18.5, 12], [-7, -12.5], [7, -12.5], [0, 12.4]].forEach(([x, z]) => plant(x, z, 1.1));
+
+// department signs on the floor
+const DSIGN = { strat: [-10.5, -5.6], data: [-10.5, 4.2], prod: [8, 4.2], part: [13.5, 4.2], ops: [-4, 7.8], sec: [5.5, 7.8], lead: [13, -5.6] };
+Object.entries(DSIGN).forEach(([k, [x, z]]) => { const el = document.createElement('div'); el.className = 'tag dept'; el.textContent = DEPTS[k].name; const o = new CSS2DObject(el); o.position.set(x, .1, z); scene.add(o) });
+
+/* ---------- walkers: errands to the war room ---------- */
+ROSTER.filter(r => r.a.walker).forEach((r, i) => { r.path = [r.home.clone(), new THREE.Vector3(i ? 3.6 : -3.6, .5, -1.5 + (i ? 1 : -1)), new THREE.Vector3(0, .5, 3.5), r.home.clone()]; r.t = i * .5 });
+
+/* ---------- interaction ---------- */
+const ray = new THREE.Raycaster(), mouse = new THREE.Vector2(); let hovered = null, selected = null;
+const pickables = []; ROSTER.forEach(r => { r.p.traverse(o => o.isMesh && pickables.push(o)); r.dk.g.traverse(o => o.isMesh && pickables.push(o)) });
+function pick(e) { const b = canvas.getBoundingClientRect(); mouse.set((e.clientX - b.left) / b.width * 2 - 1, -(e.clientY - b.top) / b.height * 2 + 1); ray.setFromCamera(mouse, camera); const h = ray.intersectObjects(pickables, false)[0]; return h ? h.object.userData.agent : null }
+canvas.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; const id = pick(e); if (id !== hovered) { hovered = id; canvas.style.cursor = id ? 'pointer' : 'grab'; ROSTER.forEach(r => r.el.classList.toggle('on', r.a.id === id || r.a.id === selected)) } });
+let down = null; canvas.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; stopTour() });
+canvas.addEventListener('pointerup', e => { if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6) return; const id = pick(e); id ? select(id) : close() });
+
+let fly = null;
+function flyTo(pos, tgt, dur = 1.4) { fly = { p0: camera.position.clone(), t0: controls.target.clone(), p1: pos, t1: tgt, s: performance.now(), d: RM ? 1 : dur * 1000 }; controls.autoRotate = false }
+function select(id) {
+  const r = ROSTER.find(x => x.a.id === id); if (!r) return; selected = id; const a = r.a, dp = DEPTS[a.d];
+  ROSTER.forEach(x => { x.el.classList.toggle('on', x.a.id === id); x.p.userData.ring.material.opacity = x.a.id === id ? .9 : 0 });
+  $('#pbody').innerHTML = `<div class="dep mono"><i style="background:${dp.color}"></i>${dp.name}</div><h3>${a.name}</h3><p><b>${a.role}.</b> ${a.job}</p><div class="now"><span class="mono">${a.human ? 'Working on' : 'Agent is working on'}</span>${a.now}</div>`;
+  $('#panel').classList.add('open'); document.querySelectorAll('#dir button').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id));
+  const t = r.p.position.clone(); t.y = 1; const dir = new THREE.Vector3(-t.x * .35, 0, 2 - t.z).normalize(); const side = new THREE.Vector3(dir.z, 0, -dir.x);
+  const pos = t.clone().addScaledVector(dir, SMALL ? 7 : 5.5).addScaledVector(side, 1.6).add(new THREE.Vector3(0, SMALL ? 4.6 : 3.4, 0)); flyTo(pos, t); $('#hint').style.opacity = 0; if (SMALL) $('#dir').classList.add('min');
+}
+function close() { selected = null; $('#panel').classList.remove('open'); ROSTER.forEach(x => { x.el.classList.remove('on'); x.p.userData.ring.material.opacity = 0 }); document.querySelectorAll('#dir button').forEach(b => b.setAttribute('aria-pressed', false)) }
+$('#px').onclick = () => { close(); flyTo(HOME.pos.clone(), HOME.tgt.clone()) };
+$('#warroom').onclick = () => { stopTour(); close(); $('#dir').classList.add('min'); flyTo(new THREE.Vector3(SMALL ? 7 : -6.5, 4.2, SMALL ? 0 : -.6), new THREE.Vector3(-W / 2, 3.7, SMALL ? 0 : -.6)) };
+addEventListener('keydown', e => { if (e.key === 'Escape') { close(); flyTo(HOME.pos.clone(), HOME.tgt.clone()) } });
+
+// directory
+const ul = $('#dirl'); let last = '';
+AGENTS.forEach(a => { if (a.d !== last) { last = a.d; const s = document.createElement('li'); s.className = 'sec'; s.textContent = DEPTS[a.d].name; ul.append(s) }
+  const li = document.createElement('li'), b = document.createElement('button'); b.type = 'button'; b.dataset.id = a.id; b.setAttribute('aria-pressed', 'false');
+  b.innerHTML = `<i style="background:${DEPTS[a.d].color}"></i>${a.name}<small>${a.human ? 'Human' : 'AI'}</small>`; b.onclick = () => { stopTour(); select(a.id) }; li.append(b); ul.append(li) });
+{ const h = $('#dir h2'); h.setAttribute('role', 'button'); h.tabIndex = 0; h.setAttribute('aria-expanded', !SMALL); const tg = () => { $('#dir').classList.toggle('min'); h.setAttribute('aria-expanded', !$('#dir').classList.contains('min')) }; h.onclick = tg; h.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tg() } }; if (SMALL) $('#dir').classList.add('min') }
+
+// tour
+let tour = null;
+function stopTour() { if (tour) { clearInterval(tour); tour = null; $('#tour').textContent = 'Tour' } }
+$('#tour').onclick = () => { if (tour) return stopTour(); let i = 0; const step = () => { select(AGENTS[i % AGENTS.length].id); i++ }; step(); tour = setInterval(step, 4200); $('#tour').textContent = 'Stop tour' };
+
+/* ---------- loop ---------- */
+const clock = new THREE.Clock(); let visible = true; document.addEventListener('visibilitychange', () => visible = !document.hidden);
+const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+let frame = 0;
+function loop() {
+  requestAnimationFrame(loop); if (!visible) return;
+  const dt = Math.min(clock.getDelta(), .05), t = clock.elapsedTime; frame++;
+  if (fly) { const k = Math.min(1, (performance.now() - fly.s) / fly.d), e = ease(k); camera.position.lerpVectors(fly.p0, fly.p1, e); controls.target.lerpVectors(fly.t0, fly.t1, e); if (k >= 1) fly = null }
+  controls.update();
+  skyMat.uniforms.t.value = t;
+  if (!RM) {
+    holo.children.forEach(o => { if (o.userData.spin) o.rotation.z += o.userData.spin * dt }); holo.position.y = 1.6 + Math.sin(t * 1.2) * .05;
+    ROSTER.forEach(r => {
+      if (r.path) { r.t = (r.t + dt * .045) % 1; const seg = r.path.length - 1, f = r.t * seg, i = Math.floor(f), k = f - i, a = r.path[i], b = r.path[i + 1];
+        const pause = k < .25 ? 0 : (k - .25) / .75; r.p.position.lerpVectors(a, b, ease(pause)); r.p.position.y = .02 + (pause > 0 && pause < 1 ? Math.abs(Math.sin(t * 9)) * .06 : 0);
+        if (pause > 0 && pause < 1) r.p.rotation.y = Math.atan2(b.x - a.x, b.z - a.z) }
+      else { r.p.userData.body.position.y = .62 + Math.sin(t * 2.2 + r.phase) * .012; r.p.children[1].rotation.x = Math.sin(t * 1.3 + r.phase) * .08 }
+      if (frame % 40 === (r.phase * 6 | 0)) { const tx = r.dk.tex, x = tx.userData.x, c = tx.userData.c; x.drawImage(c, 0, -14); x.fillStyle = '#140510'; x.fillRect(0, c.height - 14, c.width, 14); x.fillStyle = DEPTS[r.a.d].color; x.globalAlpha = .4 + Math.random() * .5; x.fillRect(16, c.height - 12, 30 + Math.random() * 180, 6); x.globalAlpha = 1; x.fillRect(0, 0, c.width, 10); tx.needsUpdate = true }
+    });
+    arcScr.material.color.setHSL((t * .05) % 1, .7, .55);
+  }
+  renderer.render(scene, camera); labels.render(scene, camera);
+}
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); labels.setSize(innerWidth, innerHeight) });
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { [wallTex, roadTex, sign].forEach(tx => { const { x, c, draw } = tx.userData; x.clearRect(0, 0, c.width, c.height); draw(x, c.width, c.height); tx.needsUpdate = true }) });
+loop();
+setTimeout(() => $('#loading').classList.add('done'), 500);
+setTimeout(() => { $('#hint').style.opacity = 0 }, 9000);
+const deep = location.hash.slice(1); if (deep && AGENTS.some(a => a.id === deep)) setTimeout(() => select(deep), 700);
+</script>
+</body>
+</html>

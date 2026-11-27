@@ -46,8 +46,15 @@ button{font:inherit;color:inherit}
 .cy{color:var(--cyan)}.am{color:var(--amber)}
 
 /* cursor */
-.cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid var(--cyan);border-radius:50%;z-index:90;pointer-events:none;opacity:0;transition:scale .2s var(--eo),opacity .3s,background .2s}
-.cur.on{opacity:.8}.cur.big{scale:1.7;background:rgba(255,61,127,.08)}
+.cur{position:fixed;left:0;top:0;width:22px;height:22px;margin:-11px 0 0 -11px;z-index:120;pointer-events:none;opacity:0;transition:opacity .3s}
+.cur svg{display:block;width:100%;height:100%;overflow:visible;transition:scale .25s var(--eo)}
+.cur::before{content:"";position:absolute;inset:-9px;border-radius:50%;border:1.5px solid var(--gold,#FFC857);scale:.5;opacity:0;transition:scale .3s var(--eo),opacity .25s}
+.cur i{position:absolute;inset:0;border-radius:50%;border:2px solid #FFC857;opacity:0;pointer-events:none}
+.cur.hit i{animation:hit .5s var(--eo)}
+@keyframes hit{0%{opacity:.9;scale:1}100%{opacity:0;scale:3.2}}
+.cur.on{opacity:1}.cur.big svg{scale:1.3}.cur.big::before{scale:1;opacity:.9}.cur.down svg{scale:.82}
+body.ballcur,body.ballcur a,body.ballcur button,body.ballcur [role=button],body.ballcur canvas,body.ballcur label,body.ballcur summary{cursor:none}
+body.ballcur input,body.ballcur textarea{cursor:text}
 @media (pointer:coarse){.cur{display:none}}
 .nofx .cur{display:none}
 
@@ -467,7 +474,7 @@ body.rec #aura{opacity:.35}
 #intro.fly .ibar{opacity:0;transform:translateY(20px)}
 #intro.fly #imask{opacity:0}
 body.lock main{opacity:1!important}
-body.lock .herocopy,body.lock .av-credit{opacity:0}
+body.lock .av-credit{opacity:0}
 .herocopy{transition:opacity .6s}
 
 /* ===== avatar stage ===== */
@@ -482,10 +489,10 @@ body.lock .herocopy,body.lock .av-credit{opacity:0}
 .av-word{right:-4vw;top:3vh;width:60vw;text-align:center;line-height:.8;pointer-events:none}
 .av-word span{display:block;font-family:Anton,Impact,sans-serif;font-size:clamp(120px,24vw,420px);letter-spacing:.01em;background:linear-gradient(180deg,#FFE8DC 0%,#FFC857 35%,#FF7A5C 65%,#FF3D7F 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 20px 60px rgba(255,61,127,.45))}
 .av-me{right:-1vw;bottom:0;height:min(84svh,900px);aspect-ratio:1320/1435;animation:float 7s ease-in-out infinite}
-.av-me img{display:block;width:100%;height:100%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 0 1.5px rgba(255,200,87,.9)) drop-shadow(0 0 26px rgba(255,61,127,.55))}
+.av-me img{display:block;width:100%;height:100%;object-fit:contain;object-position:bottom;-webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent);filter:drop-shadow(0 0 1.5px rgba(255,200,87,.9)) drop-shadow(0 0 26px rgba(255,61,127,.55))}
 .av-me .scan{position:absolute;inset:0;pointer-events:none;-webkit-mask:url(media/hemi-cut.webp) bottom/contain no-repeat;mask:url(media/hemi-cut.webp) bottom/contain no-repeat;
-  background:linear-gradient(180deg,transparent 0%,rgba(255,232,220,0) 40%,rgba(255,200,87,.38) 48%,rgba(46,196,182,.28) 52%,transparent 60%,transparent 100%);background-size:100% 260%;animation:scan 5.5s cubic-bezier(.6,0,.4,1) infinite;mix-blend-mode:screen}
-@keyframes scan{0%{background-position:0 120%}60%,100%{background-position:0 -20%}}
+  background:linear-gradient(180deg,transparent 0%,transparent 44%,rgba(255,200,87,.2) 49%,rgba(255,232,220,.26) 50%,transparent 56%,transparent 100%);background-size:100% 260%;animation:scan 8s cubic-bezier(.6,0,.4,1) infinite;mix-blend-mode:screen}
+@keyframes scan{0%{background-position:0 120%}35%,100%{background-position:0 -20%}}
 @keyframes float{50%{translate:0 -10px}}
 .av-rings{right:-1vw;bottom:2vh;height:min(84svh,900px);aspect-ratio:1320/1435;transform-style:preserve-3d;pointer-events:none}
 .av-rings i{position:absolute;left:50%;top:60%;width:96%;aspect-ratio:1;margin:-48% 0 0 -48%;border-radius:50%;border:2px solid transparent;
@@ -505,8 +512,17 @@ body.lock .herocopy,body.lock .av-credit{opacity:0}
 .tri span:nth-child(1){color:var(--gold)!important}.tri span:nth-child(2){color:var(--magenta)!important}.tri span:nth-child(3){color:var(--teal)!important}
 .hero .hud div{background:rgba(24,8,20,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 /* entrance choreography once you are in */
-body.entered .av-me{animation:arrive 1.4s var(--eo) both,float 7s ease-in-out 1.4s infinite}
-body.entered .av-word span{animation:wordin 1.6s var(--eo) both}
+body.direct .av-me{animation:arrive 1.4s var(--eo) both,float 7s ease-in-out 1.4s infinite}
+body.direct .av-word span{animation:wordin 1.6s var(--eo) both}
+body.lock .avstage{transform:scale(1.16)}
+.avstage{transition:transform 1.9s cubic-bezier(.16,1,.3,1)}
+body.flying .avstage{transform:none}
+body.lock .herocopy>*{opacity:0;translate:0 26px}
+.herocopy>*{transition:opacity .9s var(--eo),translate 1.1s var(--eo)}
+body.flying .herocopy>*{opacity:1;translate:none}
+body.flying .herocopy>*:nth-child(1){transition-delay:.85s}body.flying .herocopy>*:nth-child(2){transition-delay:.95s}body.flying .herocopy>*:nth-child(3){transition-delay:1.05s}
+body.flying .herocopy>*:nth-child(4){transition-delay:1.12s}body.flying .herocopy>*:nth-child(5){transition-delay:1.2s}body.flying .herocopy>*:nth-child(6){transition-delay:1.28s}body.flying .herocopy>*:nth-child(7){transition-delay:1.36s}
+#imask .breath{animation:breath 5s ease-in-out infinite}
 @keyframes arrive{from{opacity:0;translate:0 80px;scale:.92}}
 @keyframes wordin{from{opacity:0;letter-spacing:.3em;filter:blur(12px)}}
 @media (max-width:900px){
@@ -519,10 +535,43 @@ body.entered .av-word span{animation:wordin 1.6s var(--eo) both}
   .av-word span{font-size:44vw}
   .av-glow{right:10%;top:12svh;width:80vw;height:80vw}
   .av-fade{background:linear-gradient(0deg,#12060F 0%,rgba(18,6,15,.94) 36%,rgba(18,6,15,0) 56%)}
-  .av-credit{right:16px;top:calc(env(safe-area-inset-top,0px) + 70px);opacity:.6}
+  .av-credit{right:8px;top:18svh;writing-mode:vertical-rl;opacity:.55;font-size:9px}
   body.entered .av-me{animation:arrive 1.4s var(--eo) both}
 }
 @media (prefers-reduced-motion:reduce){.av-me,.av-rings i,.av-glow,.av-me .scan{animation:none!important}#imask{transition:none}}
+
+/* ===== cinematic batting clip ===== */
+.sc.cine{display:block;max-width:none;width:100vw;height:300vh;min-height:0;padding:0;margin:0 0 0 calc(50% - 50vw)}
+.cstick{position:sticky;top:0;height:100svh;overflow:hidden}
+.cframe{position:absolute;inset:0;clip-path:inset(28% 33% 28% 33% round 28px);will-change:clip-path}
+.cframe video{width:100%;height:100%;object-fit:cover;filter:saturate(1.15) contrast(1.08)}
+.cduo{position:absolute;inset:0;background:linear-gradient(160deg,#FF3D7F,#FF9A3D 60%,#FFC857);mix-blend-mode:soft-light;opacity:.8}
+.cshade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,6,15,.1),rgba(18,6,15,.88))}
+.chint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#C99AA6;transition:opacity .3s}
+.cover{position:absolute;left:max(24px,5vw);right:max(24px,5vw);bottom:clamp(36px,9vh,96px)}
+.ch{max-width:none;text-transform:uppercase;font-family:Anton,Impact,sans-serif!important;font-weight:400!important;font-size:clamp(52px,8.5vw,140px)!important;line-height:.88!important;letter-spacing:.005em;color:#FFF3EA;opacity:0;transform:translateY(40px)}
+.ch .g{background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
+.croles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px;border-top:1px solid rgba(255,243,234,.25);padding-top:20px}
+.croles>div{opacity:0;transform:translateY(16px)}
+.croles .mono{color:var(--gold);font-size:11px;letter-spacing:.14em}
+.croles b{display:block;font-weight:600;font-size:clamp(16px,1.5vw,21px);margin:6px 0 4px;color:#FFF3EA}
+.croles span:not(.mono){color:#F0D6D2;font-size:14px;line-height:1.45}
+@media (max-width:900px){.croles{grid-template-columns:1fr;gap:10px;margin-top:18px}.croles span:not(.mono){display:none}.croles b{margin:2px 0 0}.cover{bottom:calc(104px + env(safe-area-inset-bottom,0px))}.sc.cine{height:240vh}}
+@media (prefers-reduced-motion:reduce){.sc.cine{height:auto}.cstick{position:relative}.cframe{clip-path:none}.ch,.croles>div{opacity:1;transform:none}.chint{display:none}}
+
+/* ===== Cric Secrets HQ portal ===== */
+.portal{position:relative;display:block;border-radius:22px;overflow:hidden;border:1px solid rgba(255,200,190,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 40px 90px -50px rgba(255,61,127,.6);aspect-ratio:16/10;max-height:70vh;isolation:isolate}
+.portal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--eo),filter .6s}
+.portal:hover img,.portal:focus-visible img{transform:scale(1.045);filter:saturate(1.15)}
+.pglow{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(18,6,15,.85));pointer-events:none}
+.pcta{position:absolute;left:24px;bottom:22px;display:flex;flex-direction:column;gap:6px}
+.pcta b{display:inline-flex;align-self:flex-start;padding:14px 22px;border-radius:999px;background:var(--sunset);color:#12060F;font:700 15px var(--body);letter-spacing:.02em;box-shadow:0 14px 40px -14px rgba(255,61,127,.8)}
+.pcta small{color:#EFD3CF;font-size:10.5px}
+.hqstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.hqstats div{background:rgba(24,8,20,.82);padding:16px 18px}
+.hqstats b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:34px;line-height:1;background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hqstats span{display:block;margin-top:6px;color:var(--mute);font-size:13px;line-height:1.4}
+@media (max-width:700px){.hqstats{grid-template-columns:minmax(0,1fr)}.pcta{left:16px;bottom:14px}.portal{aspect-ratio:4/3}}
 </style>
 
 </head>
@@ -530,7 +579,11 @@ body.entered .av-word span{animation:wordin 1.6s var(--eo) both}
 
 <canvas id="universe" aria-hidden="true"></canvas>
 <div id="aura" aria-hidden="true"></div>
-<div class="cur" id="cur" aria-hidden="true"></div>
+<div class="cur" id="cur" aria-hidden="true"><svg viewBox="0 0 40 40"><defs><radialGradient id="cb" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF6B6B"/><stop offset=".45" stop-color="#D3203D"/><stop offset="1" stop-color="#6E0A1C"/></radialGradient></defs>
+<ellipse cx="21" cy="24" rx="15" ry="14" fill="#000" opacity=".28"/><g id="curball"><circle cx="20" cy="20" r="17" fill="url(#cb)"/><path d="M14 4.5C9.5 12 9.5 28 14 35.5M26 4.5C30.5 12 30.5 28 26 35.5" fill="none" stroke="#FFE8DC" stroke-width="1.1" opacity=".9"/>
+<path d="M14 4.5C9.5 12 9.5 28 14 35.5M26 4.5C30.5 12 30.5 28 26 35.5" fill="none" stroke="#FFE8DC" stroke-width="2.6" stroke-dasharray=".9 2.2" transform="translate(-1.6 0)" opacity=".75"/>
+<path d="M26 4.5C30.5 12 30.5 28 26 35.5" fill="none" stroke="#FFE8DC" stroke-width="2.6" stroke-dasharray=".9 2.2" transform="translate(1.6 0)" opacity=".75"/></g>
+<ellipse cx="14" cy="12" rx="6" ry="3.6" fill="#fff" opacity=".28" transform="rotate(-30 14 12)"/></svg><i></i></div>
 
 <div id="intro" role="dialog" aria-label="Introduction">
   <svg id="imask" aria-hidden="true"><defs>
@@ -539,7 +592,7 @@ body.entered .av-word span{animation:wordin 1.6s var(--eo) both}
     <rect width="100%" height="100%" fill="url(#ig)" mask="url(#icut)"/>
     <text id="iline" text-anchor="middle" dominant-baseline="central" fill="none" stroke="#FFC857" stroke-width="1.2" opacity=".6">HEMI</text></svg>
   <div class="ibar">
-    <p class="say fade" style="--d:.9s">Professional cricketer. Analyst. <b>AI × Sports Consulting.</b></p>
+    <p class="say fade" style="--d:.9s">Professional cricketer. Business analytics student. <b>Sports × Data × AI.</b></p>
     <div class="acts fade" style="--d:1.2s">
       <button class="btn mag" id="enter" type="button">Enter experience</button>
       <button class="btn ghost" id="skip" type="button">Skip intro</button>
@@ -578,15 +631,15 @@ body.entered .av-word span{animation:wordin 1.6s var(--eo) both}
    ===================================================================== */
 const CONTENT = {
   portrait: "",
-  headline: "Professional cricketer turning data and AI into decisions for sports organisations.",
+  headline: "Professional cricketer and business analytics student building sports analytics, machine learning and AI.",
   pitch: [
     "7+ years of professional cricket and still playing: Tamil Nadu Cricket Association and Tamil Nadu Premier League in India, now the Massachusetts State Cricket League and Charlotte Premier League in the US. I know what performance data feels like from the athlete's side.",
     "MS in Business Analytics at Suffolk University (expected May 2027), built on a B.E. in Computer Science: Python, SQL, Tableau and predictive modeling.",
     "Selected for the 2026 MIT Sloan Sports Analytics Conference Mentorship Program, learning from professionals already doing the work.",
     "Recent work: computer vision that rebuilds my own innings from broadcast video, a soccer recruitment model (R² 0.68 on held-out players), a football market-value model (R² 0.612), and Tamil, my own team of AI agents that runs research and news at zero cost.",
-    "Where I am heading: AI sports consulting. Helping teams and sports businesses frame the decision, find the data, build the logic and act on a clear recommendation."
+    "The ambition: start as an analyst, then grow into a consultant and advisor for the sports industry, helping teams frame the decision, find the data, build the logic and act on a clear recommendation."
   ],
-  seeking: "Advisory, consulting and business analyst roles in sports and AI: teams, leagues and sports businesses across the NFL, NBA, MLB, NHL and football, and firms that advise them.",
+  seeking: "Analyst internships and roles in sports and AI (business, data and advisory analyst) with teams, leagues and sports businesses across the NFL, NBA, MLB, NHL and football, and with firms that serve them.",
   contact: { email: "hemanthkumargopi55@gmail.com", linkedin: "https://www.linkedin.com/in/hemanthkumargopi", github: "https://github.com/Hemanth-55", resumeUrl: "" },
   story: [
     { id:"ch1", n:"I", key:"The Athlete", shape:"pitch", side:"l", h:"Before I studied performance, I lived it.",
@@ -605,9 +658,9 @@ const CONTENT = {
     { id:"ch4", n:"IV", key:"The Analyst", shape:"court", side:"r", h:"Same instincts. New instruments.",
       p:["At Suffolk University I'm pursuing an MS in Business Analytics, building depth in statistics, databases, predictive analytics and machine learning.",
          "I'm also around the men's basketball program, learning a new sport from the inside and exploring how performance data can support analysis and decisions. A cricketer reading a basketball court is a useful kind of outsider: I ask the questions people stopped asking."] },
-    { id:"ch5", n:"V", key:"The Builder", shape:"network", side:"l", h:"I'm not leaving sports behind. I'm building its AI playbook.",
+    { id:"ch5", n:"V", key:"The Builder", shape:"network", side:"l", h:"I'm not leaving sports behind. I'm building my next chapter within it.",
       p:["Now I build: computer vision that reads my own match footage, a soccer recruitment model that forecasts next season's output, predictive models on NBA data, football market-value models, fan experiments, and interactive tools that make an analysis something a coach can actually use.",
-         "I understand sport from both sides of the screen: what the athlete feels, and what the data says. Next I want to advise the people making the calls: start from the decision, find the data, build the logic, and leave a clear recommendation."] }
+         "I understand sport from both sides of the screen: what the athlete feels, and what the data says. Next I want to be the analyst the decision-makers rely on, and in time grow into advising them."] }
   ],
   experience: [
     { grp:"Experience", tag:"now", tagText:"Current", when:"Sep 2026 – Present", title:"Graduate Fellow · Teaching Assistant", org:"Suffolk University · SAP S/4HANA",
@@ -631,8 +684,8 @@ const CONTENT = {
     { grp:"Education", tag:"done", tagText:"Completed", when:"Nov 2021", title:"B.E. in Computer Science", org:"Anna University · LICET, Chennai",
       p:"An engineering degree in computer science, completed alongside my professional cricket career.",
       more:["Engineering degree in computer science","Completed while competing professionally"] },
-    { grp:"Next", tag:"next", tagText:"Ambition", when:"Next", title:"AI sports consulting", org:"Teams · leagues · sports businesses · NFL · NBA · MLB · NHL · football",
-      p:"The goal: advise sports organisations on decisions, where athletic experience, analytics and AI are all part of the job.",
+    { grp:"Next", tag:"next", tagText:"Ambition", when:"Next", title:"Analyst → consultant in sports", org:"Teams · leagues · sports businesses · NFL · NBA · MLB · NHL · football",
+      p:"The ambition: start as an analyst, then become a consultant and advisor to sports organisations, where athletic experience, analytics and AI are all part of the job.",
       more:["Performance and player analysis","Predictive modeling for decisions that matter on game day","Tools that coaches and athletes actually want to open"] }
   ],
   projects: [
@@ -642,6 +695,12 @@ const CONTENT = {
       tools:"Python · OpenCV · Ultralytics YOLO11 (detection and pose) · RapidOCR · Tesseract · NumPy · matplotlib",
       outcome:"Rebuilt my 73 off 44 from 3,976 broadcast frames. 24 runs in 7 balls turned the innings, and across 9 tracked strokes my set-up varied 2.4 times less than my body at contact.",
       links:[{label:"Code and results on GitHub",url:"https://github.com/Hemanth-55/First-Computer-Vision-Project"}] },
+    { id:"cricsecrets", cat:"sports", viz:"winprob", title:"Cric Secrets: Next-Batter Engine", status:"The company I'm building · 2026",
+      problem:"Chasing 20 off 6, a wicket falls. Who should walk out next? Teams make that call in seconds, mostly on instinct. Cric Secrets is the cricket decision-intelligence company I'm building to answer it with a win probability attached.",
+      approach:"A ball-by-ball win-probability model for chases, trained on matches before 2024 and tested once on 2024 onward, then a next-batter recommender that compares the win chance of sending each available batter. The company itself runs on a team of AI agents (strategy, data, models, product, partnerships, security) that I supervise through Tamil CEO.",
+      tools:"Python · pandas · scikit-learn (gradient boosting, logistic regression) · Cricsheet open data · AI agents · Three.js (the HQ)",
+      outcome:"Win probability: AUC 0.915 on 2,451 chases it never saw (0.973 in the last 4 overs), and well calibrated. Next batter: teams already send its top pick 60% of the time; when they don't, its pick is worth +1.9 win-percentage points on average. A decision aid, not an oracle yet.",
+      links:[{label:"Walk into the HQ (3D office)",url:"/hq/"}] },
     { id:"tamil", cat:"ai", viz:"agents", title:"Tamil: an AI Agent Team", status:"AI agents · running daily",
       problem:"A front office runs on research, news and reporting that eat hours every week. Can one analyst run that work like a full team, at zero running cost, without losing control of what goes out?",
       approach:"A CEO agent routes every request to a specialist: a Portfolio agent (idea → tested notebook → repository → live demo), an AI News agent and a Job Hunter. The news agent runs on a free GitHub Actions schedule: it collects RSS feeds, groups stories several newsrooms report, keeps only verified ones and sends a briefing to WhatsApp.",
@@ -711,7 +770,8 @@ const CONTENT = {
     { n:"Causal inference", lvl:"d", pj:["rivalry","bj"], note:"Experiments and mediation analysis: not just what happened, but why." },
     { n:"Text analytics", lvl:"d", pj:["bj"], note:"TF-IDF features and classification on real responses." },
     { n:"Gen AI", lvl:"d", pj:["tamil"], note:"Part of how I analyze and build, including this website and my agent team." },
-    { n:"AI agents", lvl:"d", pj:["tamil"], note:"A CEO agent leading specialist agents, with a human approving what matters." },
+    { n:"Consulting mindset", lvl:"x", pj:["soccer","football","firstcv","cricsecrets"], note:"Decision → data → logic → recommendation → impact. How I frame every project, and the craft I am building toward a consulting career in sports." },
+    { n:"AI agents", lvl:"d", pj:["tamil","cricsecrets"], note:"A CEO agent leading specialist agents, with a human approving what matters." },
     { n:"Automation (GitHub Actions)", lvl:"d", pj:["tamil"], note:"Scheduled pipelines that run for free, every day, without me." },
     { n:"Google Cloud Platform", lvl:"d", pj:[], note:"Cloud tools for data work." },
     { n:"Google Analytics", lvl:"d", pj:[], note:"Certified." },
@@ -738,6 +798,11 @@ const CONTENT = {
 /* Technical case-study detail for each project (merged into CONTENT.projects by id).
    Any value starting with "TODO:" is hidden on the live site until you replace it with verified information. */
 const CASES = {
+  cricsecrets:{ data:"Cricsheet ball-by-ball open data: 6,743 men's T20 matches and 1.55 million deliveries (IPL, MLC, BBL, PSL, CPL, SA20, ILT20, T20Is).",
+    pipeline:["Cricsheet data","Clean tables","Chase states","Win probability (GBM)","Test once on 2024+","Next-batter options","Role guard","Back-test 3,960 decisions"],
+    results:"Win probability on 2,451 test chases: AUC 0.915 (logistic baseline 0.914), 0.973 in the last 4 overs, Brier 0.120. Calibrated: when it says 45%, chasers won 50%. Next-batter back-test: the model's top option was already the team's choice 60% of the time; otherwise its pick averaged +1.9 win-% points (median 1.0).",
+    limitations:"The batter model is only 0.29% better than a league-average batter, so the recommender leans on the win-probability model. No bowler-type match-ups yet, and no fitness or form on the day. Open data only.",
+    next:"Pace and spin match-ups, batter roles, recent-form weighting; then three famous chases re-played with the model, once a cricket expert agrees with the picks.", repo:false },
   tamil:{ data:"Free RSS feeds from official AI company blogs and established newsrooms, the Hacker News front page and Hugging Face trending models. Nothing is paid for.",
     pipeline:["Schedule (GitHub Actions)","Collect feeds","Group same story","Verify: official or 2+ newsrooms","Rank","Front page","WhatsApp"],
     results:"Runs every day on its own. Duplicate coverage of one event is merged, unverified stories are dropped, and a delivery record is kept so the same briefing is never sent twice.",
@@ -822,19 +887,28 @@ scene('top','Hero',`<div class="avstage" id="avstage" aria-hidden="true">
     <span class="mono av-credit">Illustration made with Meta AI</span>
   </div>
   <div class="col herocopy">
-  <div class="mono kick rv">Scene 01 · Athlete → analyst → advisor</div>
-  <h1 class="rv hx"><span class="sr">Hemi · </span>AI × Sports<br><span class="g">Consulting.</span></h1>
+  <div class="mono kick rv">Scene 01 · Athlete to analyst</div>
+  <h1 class="rv hx"><span class="sr">Hemi · </span>Athlete<br><span class="g">turned analyst.</span></h1>
   <div class="fullname mono rv">Hemanth Kumar Gopi · Hemi</div>
-  <div class="tri rv"><span>Athlete.</span><span>Analyst.</span><span>Advisor.</span></div>
-  <p class="rv" style="font-size:19px">Professional cricketer building the AI playbook for sports organisations: models, computer vision and AI agents that turn a hunch into a decision.</p>
+  <div class="tri rv"><span>Athlete.</span><span>Analyst.</span><span>Builder.</span></div>
+  <p class="rv" style="font-size:19px">Professional cricketer and MS Business Analytics student at Suffolk University, building sports models, computer vision and AI agents that turn a hunch into evidence.</p>
   <div class="row rv"><a class="btn mag" href="#work">See the work</a><a class="btn ghost mag" href="#story">Explore my journey</a></div>
-  <div class="hud rv"><div><small>Location</small>Boston, MA / Chennai, India</div><div><small>Domain</small>Sports × Data × AI</div><div><small>Current mission</small>AI sports consulting</div></div>
+  <div class="hud rv"><div><small>Location</small>Boston, MA / Chennai, India</div><div><small>Domain</small>Sports × Data × AI</div><div><small>Current mission</small>Sports analytics &amp; AI</div></div>
 </div>`,{cls:'hero',shape:'stadium',ox:.27,s:.82,tilt:.42,a:.1});
 
 function shotScenes(){
   scene('shot','The shot',`<div class="shotstick"><canvas id="shotcv" aria-hidden="true"></canvas>
     <div class="shotui"><div class="mono kick">Interlude · The shot</div><div class="shotcap" id="shotcap" aria-live="polite">One delivery.</div>
     <div class="mono shotside">Opening bat · Right-handed</div><div class="mono shothint" id="shothint">Keep scrolling to face it ↓</div></div></div>`,{cls:'shot',shape:'stars',ox:0,s:1,tilt:.3,a:.05});
+  scene('cine','From the crease',`<div class="cstick" id="cstick">
+    <div class="cframe" id="cframe"><video id="cv" muted playsinline loop preload="none" poster="media/six2.jpg" aria-label="Hemi batting under the lights"><source src="media/six2.mp4" type="video/mp4"></video><div class="cduo"></div><div class="cshade"></div></div>
+    <div class="mono chint" id="chint">Keep scrolling</div>
+    <div class="cover"><p class="ch" id="ch2t" role="heading" aria-level="2">From the crease<br>to the <span class="g">data.</span></p>
+      <div class="croles" id="croles">
+        <div><span class="mono">01 · Athlete</span><b>Professional cricketer</b><span>TNCA · TNPL (Dindigul Dragons) · Massachusetts State Cricket League · Charlotte Premier League</span></div>
+        <div><span class="mono">02 · Analyst</span><b>MS Business Analytics</b><span>Suffolk University, Boston · Mentee, MIT Sloan Sports Analytics Conference 2026</span></div>
+        <div><span class="mono">03 · Builder</span><b>Sports models &amp; AI</b><span>Computer vision, recruitment models and AI agents, built on real data</span></div></div></div>
+  </div>`,{cls:'cine',shape:'stars',ox:0,s:1,tilt:.3,a:0});
   scene('film','Film room',`<div class="wide">
     <div class="mono kick rv">Film room</div>
     <h2 class="rv">At the crease</h2>
@@ -893,6 +967,14 @@ scene('lab','Analytics playground',`<div class="wide">
     <button class="chipb" role="tab" data-t="b" aria-selected="false" type="button">E · Prediction</button></div>
   <div class="panel labgrid rv"><canvas id="labcv" role="img" aria-label="Interactive visualization"></canvas><div class="labside" id="labside"></div></div>
 </div>`,{shape:'grid',ox:0,s:1.4,tilt:.9,a:.3,nav:'Lab'});
+
+scene('hq','Cric Secrets HQ',`<div class="wide">
+  <div class="mono kick rv">World · Cric Secrets HQ</div>
+  <h2 class="rv">Walk into the company I'm building</h2>
+  <p class="rv">Cric Secrets is a cricket decision-intelligence company in the making. Its first question: chasing 20 off 6, who should walk out next? It runs on a team of 13 AI agents and me. Step inside the office, meet every agent and see what they are working on.</p>
+  <a class="portal rv" href="/hq/" aria-label="Enter Cric Secrets HQ, a 3D office"><img src="media/hq.webp" alt="3D office of Cric Secrets at sunset: agents at their desks around a war-room table" loading="lazy"><span class="pglow"></span><span class="pcta"><b>Enter the HQ</b><small class="mono">3D · drag to look around · tap a desk</small></span></a>
+  <div class="hqstats rv"><div><b>13</b><span>AI agents, one human founder</span></div><div><b>0.915</b><span>AUC of the win-probability model on unseen chases</span></div><div><b>1 / 6</b><span>Roadmap phase: first models done, demo next</span></div></div>
+</div>`,{shape:'network',ox:0,s:1.3,tilt:.3,a:.25,nav:'HQ'});
 
 scene('skills','Skills and technologies',`<div class="wide">
   <div class="mono kick rv">Scene 06 · Skills & technologies</div>
@@ -1142,6 +1224,17 @@ safe('avatar',()=>{const st=$('#avstage');if(!st)return;const L=$$('.av-l',st);l
     L.forEach(l=>{const d=+l.dataset.d||0,ring=l.classList.contains('av-rings');l.style.transform=`translate3d(${(-cx*d*1.6).toFixed(1)}px,${(-cy*d+sy*d*-3).toFixed(1)}px,0)`+(ring?` rotateX(${(cy*10).toFixed(2)}deg) rotateY(${(cx*14).toFixed(2)}deg)`:'')});
     if(RM)return;x.clearRect(0,0,W,H);for(const p of P){p.y-=p.s;p.x+=Math.sin(t*.001+p.d)*.35;if(p.y<-10)Object.assign(p,mk());x.globalAlpha=.8;x.fillStyle=p.c;x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()}};
   requestAnimationFrame(loop)});
+
+/* ===================== cinematic clip: a window that opens to full screen ===================== */
+safe('cine',()=>{const sec=$('#cine');if(!sec)return;const fr=$('#cframe'),v=$('#cv'),t=$('#ch2t'),rs=$$('#croles>div'),hint=$('#chint');let on=false,last=-1;
+  const E=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+  new IntersectionObserver(([e])=>{on=e.isIntersecting;if(on){v.preload='auto';v.play().catch(()=>{})}else v.pause()},{rootMargin:'100px'}).observe(sec);
+  if(RM)return;
+  const tick=()=>{requestAnimationFrame(tick);if(!on)return;const r=sec.getBoundingClientRect(),p=clamp(-r.top/Math.max(1,r.height-innerHeight),0,1);if(Math.abs(p-last)<.0005)return;last=p;
+    const e=E(clamp(p/.55,0,1));fr.style.clipPath=`inset(${28*(1-e)}% ${33*(1-e)}% ${28*(1-e)}% ${33*(1-e)}% round ${28*(1-e)}px)`;hint.style.opacity=1-clamp(p*6,0,1);
+    const a=clamp((p-.42)/.18,0,1);t.style.opacity=a;t.style.transform=`translateY(${40*(1-a)}px)`;
+    rs.forEach((d,i)=>{const b=clamp((p-.62-i*.07)/.14,0,1);d.style.opacity=b;d.style.transform=`translateY(${16*(1-b)}px)`})};
+  requestAnimationFrame(tick)});
 /* ===================== intro ===================== */
 const introEl=$('#intro');
 function endIntro(fast){if(!introEl||introEl.classList.contains('out'))return;introEl.classList.add('out');document.body.classList.remove('lock');if(fast){intro.on=false}else{intro.exit=performance.now()}setTimeout(()=>{introEl.hidden=true},950);try{sessionStorage.setItem('btg-intro','1')}catch(e){}}
@@ -1154,13 +1247,13 @@ function fitIntro(){if(!imask)return;const W=innerWidth,H=innerHeight,ws=[$('#iw
   const len=ws[0].getComputedTextLength?ws[0].getComputedTextLength():0;if(len){fs=Math.min(fs*W*.86/len,H*.6);ws.forEach(t=>t.setAttribute('font-size',fs))}
   let ox=W/2,oy=H*.42;try{const b=ws[0].getExtentOfChar(3);ox=b.x+b.width/2;oy=b.y+b.height*.55}catch(e){}imask.style.transformOrigin=`${ox}px ${oy}px`}
 fitIntro();(document.fonts?document.fonts.ready:Promise.resolve()).then(fitIntro);addEventListener('resize',fitIntro);
-function enterSite(){if(flying||!introEl||introEl.hidden)return;flying=true;track('intro',{action:'enter'});introEl.classList.add('fly');imask.style.transform='scale(70)';
+function enterSite(){if(flying||!introEl||introEl.hidden)return;flying=true;track('intro',{action:'enter'});introEl.classList.add('fly');document.body.classList.add('flying');imask.style.transform='scale(70)';
   setTimeout(()=>{document.body.classList.add('entered');endIntro(true)},1150)}
 if(introEl&&!introEl.hidden){addEventListener('wheel',e=>{if(e.deltaY>0)enterSite()},{passive:true});
   let ty=null;addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});addEventListener('touchmove',e=>{if(ty!=null&&ty-e.touches[0].clientY>24)enterSite()},{passive:true});
   addEventListener('keydown',e=>{if(['ArrowDown','PageDown',' '].includes(e.key)&&document.activeElement===document.body)enterSite()})}
-else document.body.classList.add('entered');
-$('#enter').onclick=enterSite;$('#skip').onclick=()=>{document.body.classList.add('entered');endIntro(true)};$('#toRec').onclick=()=>setMode('recruiter');
+else document.body.classList.add('entered','direct');
+$('#enter').onclick=enterSite;$('#skip').onclick=()=>{document.body.classList.add('entered','flying');endIntro(true)};$('#toRec').onclick=()=>setMode('recruiter');
 
 /* ===================== canvas helpers ===================== */
 function fit(c){const r=c.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2),w=Math.round(r.width*d),hh=Math.round(r.height*d);if(c.width!==w||c.height!==hh){c.width=w;c.height=hh}const x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,r.width,r.height);return[x,r.width,r.height]}
@@ -1172,6 +1265,13 @@ const sig=(z)=>1/(1+Math.exp(-z));
 /* ===================== projects ===================== */
 const pvC=$('#pv'),pvP=ptr(pvC);let pSel=CONTENT.projects[0],pFilter='all';const wi={};
 const VIZ={
+  winprob(x,w,hh,t){const cal=[[.03,.03],[.15,.18],[.25,.32],[.35,.40],[.45,.50],[.55,.60],[.65,.68],[.75,.77],[.85,.83],[.98,.98]],S=Math.min(w*.56,hh*.68),L=w*.5-S*.15,T=hh*.14,g=clamp(((t*.35)%2.6),0,1);
+    x.strokeStyle=C.line;x.strokeRect(L,T,S,S);x.setLineDash([4,6]);x.beginPath();x.moveTo(L,T+S);x.lineTo(L+S,T);x.stroke();x.setLineDash([]);
+    x.strokeStyle=C.cyan;x.lineWidth=2.4;x.beginPath();const n=Math.max(1,Math.ceil(g*cal.length));cal.slice(0,n).forEach(([p,a],i)=>{const px=L+p*S,py=T+S-a*S;i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke();x.lineWidth=1;
+    cal.slice(0,n).forEach(([p,a])=>{x.fillStyle=C.amber;x.beginPath();x.arc(L+p*S,T+S-a*S,3.5,0,7);x.fill()});
+    txt(x,'PREDICTED →',L+S,T+S+16,C.mute,10,'right');txt(x,'ACTUAL ↑',L-8,T+8,C.mute,10,'right');
+    x.font='900 '+Math.round(Math.min(w,hh)*.11)+'px Unbounded,"Arial Black",sans-serif';x.fillStyle=C.ice;x.textAlign='left';x.fillText('0.915',w*.06,hh*.42);txt(x,'AUC · 2,451 UNSEEN CHASES',w*.06,hh*.42+18,C.silver,w<520?9:10.5);
+    txt(x,'CHASE WIN PROBABILITY · REAL TEST RESULTS',w/2,22,C.silver,10.5,'center');txt(x,'CALIBRATION: ON THE DASHED LINE = THE % COMES TRUE',12,hh-10)},
   agents(x,w,hh,t){const c={x:w/2,y:hh*.48},R=Math.min(w,hh)*.32,ag=[['PORTFOLIO',C.cyan],['AI NEWS',C.amber],['JOB HUNTER',C.uv]];
     x.strokeStyle=C.line;x.setLineDash([3,6]);x.beginPath();x.ellipse(c.x,c.y,R,R*.62,0,0,7);x.stroke();x.setLineDash([]);
     ag.forEach(([l,col],i)=>{const a=t*.35+i*2.094,px=c.x+Math.cos(a)*R,py=c.y+Math.sin(a)*R*.62,k=(t*.7+i/3)%1;
@@ -1218,7 +1318,7 @@ const fmt=(v)=>esc(v||'TODO: add this').replace(/TODO:\s*(.+)$/,'<span class="ph
 function caseHTML(p,all){const rows=[['Problem',p.problem],['Data',p.data],['Approach',p.approach],['Technology',p.tools],['Results',(p.results&&!/^TODO:/.test(p.results))?p.results:p.outcome],['Limitations',p.limitations],['Next steps',p.next],['Why this innings',p.story]];
   const ok=(v)=>v&&!/^TODO:/.test(v);rows.forEach(r=>{if(!ok(r[1]))r[1]=null});const dl=(rs)=>`<dl class="facts">${rs.filter(r=>r[1]).map(r=>`<dt>${r[0]}</dt><dd>${fmt(r[1])}</dd>`).join('')}</dl>`;
   const pipe=p.pipeline?`<div><div class="mono" style="margin-bottom:8px">Architecture</div><ol class="pipe">${p.pipeline.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div>`:'';
-  const links=p.links&&p.links.length?`<div class="row">${p.links.map(l=>`<a class="btn ghost" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join('')}</div>`:'';
+  const links=p.links&&p.links.length?`<div class="row">${p.links.map(l=>/^https?:/.test(l.url)?`<a class="btn ghost" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`:`<a class="btn mag" href="${esc(l.url)}">${esc(l.label)} →</a>`).join('')}</div>`:'';
   return all?dl(rows)+pipe+links:{head:dl(rows.slice(0,1)),rest:dl(rows.slice(1))+pipe+links}}
 function renderP(){const p=pSel,b=$('#pbody'),c=caseHTML(p,false);$('#pvlab').textContent='Preview · P-0'+(CONTENT.projects.indexOf(p)+1);
   b.innerHTML=`<div class="row" style="justify-content:space-between;align-items:baseline"><h3>${esc(p.title)}</h3><span class="tagp ${/develop|concept|ongoing/i.test(p.status)?'now':'done'}">${esc(p.status)}</span></div>
@@ -1416,7 +1516,13 @@ window.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCa
 function toggleFx(){fx=!fx;document.body.classList.toggle('nofx',!fx);try{localStorage.setItem('btg-fx',fx?'1':'0')}catch(e){}}
 try{if(localStorage.getItem('btg-fx')==='0')toggleFx()}catch(e){}
 const curEl=$('#cur');
-if(FINE&&!RM){window.addEventListener('pointermove',e=>{curEl.classList.add('on');curEl.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;curEl.classList.toggle('big',!!e.target.closest('a,button,input,canvas'))},{passive:true});
+if(FINE&&!RM){const cb=$('#curball');let lx=0,ly=0,rot=0;document.body.classList.add('ballcur');
+  window.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;curEl.classList.add('on');curEl.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;
+    const dx=e.clientX-lx,dy=e.clientY-ly;lx=e.clientX;ly=e.clientY;rot=(rot+(dx+dy*.4)*2.4)%360;cb.setAttribute('transform',`rotate(${rot.toFixed(1)} 20 20)`);
+    curEl.classList.toggle('big',!!e.target.closest('a,button,[role=button],[role=tab],summary,canvas,.xp,select'))},{passive:true});
+  document.addEventListener('pointerleave',()=>curEl.classList.remove('on'));
+  window.addEventListener('pointerdown',()=>{curEl.classList.add('down');curEl.classList.remove('hit');void curEl.offsetWidth;curEl.classList.add('hit')});
+  window.addEventListener('pointerup',()=>curEl.classList.remove('down'));
   $$('.mag').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.12}px,${(e.clientY-r.top-r.height/2)*.16}px)`});b.addEventListener('pointerleave',()=>{b.style.transform=''})})}
 
 /* ===================== modes: recruiter / immersive ===================== */
