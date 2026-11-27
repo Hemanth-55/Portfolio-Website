@@ -7,7 +7,7 @@ Claude: read this file, then `notes/`, at the start of every session.
 ## The site
 - One file: `index.html` (hand-written HTML/CSS/JS, no frameworks, no build step). `og.png` is the share card; `media/` holds match clips and their posters.
 - All text lives in two objects near the top of the script: `CONTENT` (story, experience, skills, contact) and `CASES` (project case studies). Change words there, not in the layout.
-- Features: canvas particle engine (2,600 desktop / 1,300 mobile), five story chapters, Immersive and Recruiter modes, project universe, analytics playground (soccer scout on real model output), ⌘K command menu, phone edition.
+- Features: HEMI fly-through entrance into a layered avatar hero (media/hemi-cut, hemi-bg; sunset palette), canvas particle engine (2,600 desktop / 1,300 mobile), five story chapters, Immersive and Recruiter modes, project universe, analytics playground (soccer scout on real model output), ⌘K command menu, phone edition.
 - Each module runs in its own error boundary. Keep it that way.
 
 ## Quality bar (non-negotiable)
