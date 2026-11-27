@@ -518,7 +518,7 @@ const CONTENT = {
       p:["At Suffolk University I'm pursuing an MS in Business Analytics, building depth in statistics, databases, predictive analytics and machine learning.",
          "I'm also around the men's basketball program, learning a new sport from the inside and exploring how performance data can support analysis and decisions. A cricketer reading a basketball court is a useful kind of outsider: I ask the questions people stopped asking."] },
     { id:"ch5", n:"V", key:"The Builder", shape:"network", side:"l", h:"I'm not leaving sports behind. I'm building my next chapter within it.",
-      p:["Now I build: computer vision that reads my own match footage, a soccer recruitment model that forecasts next season's output, predictive models on NBA data, football market-value models, fan experiments, and interactive tools that make an analysis something a coach can actually use.",
+      p:["Now I build: computer vision that reads my own match footage, a soccer recruitment model that forecasts next season's output, pregame win probabilities for NBA games with my teammates, Cric Secrets, a cricket decision-intelligence project, football market-value models, fan experiments, and interactive tools that make an analysis something a coach can actually use.",
          "I understand sport from both sides of the screen: what the athlete feels, and what the data says. The work I want to do lives exactly where those two meet."] }
   ],
   experience: [
@@ -560,11 +560,17 @@ const CONTENT = {
       tools:"Python · pandas · NumPy · scikit-learn · ridge regression · random forest · matplotlib",
       outcome:"R² 0.68 on 189 held-out players, 19% less error than projecting last season's rate, and a ranking accuracy (Spearman) of 0.82. A forecast for 1,484 players for 2026–27.",
       links:[{label:"Code and results on GitHub",url:"https://github.com/Hemanth-55/Soccer-Player-Recruitment-Model"}] },
-    { id:"nba", cat:"sports", viz:"nba", title:"NBA Predictive Analytics Platform", status:"In development",
-      problem:"Box scores describe what happened. I want to test how well different models can anticipate what happens next.",
-      approach:"An interactive sports analytics site built on NBA data: statistical analysis, predictive modeling, and a side-by-side comparison of machine-learning approaches.",
-      tools:"Python · Random Forest · XGBoost (exploring) · interactive web front end",
-      outcome:"In progress. Not a finished or commercial product, and no results are published yet.", links:[] },
+    { id:"nba", cat:"sports", viz:"nba", title:"NBA Atlantic Division: Pregame Win Probability", status:"In development · team project",
+      problem:"Before tip-off, how likely is the home team to win? A coach, analyst or fan should get an honest probability, not a hunch.",
+      approach:"With Anshuman Agrawal and Paris Taliadouros, I'm modelling the five Atlantic Division teams (Celtics, Nets, Knicks, 76ers, Raptors) using only information available before each game: recent form, offensive and defensive efficiency, rest and opponent strength. Logistic regression sets the baseline; gradient boosting has to beat it on later seasons it has never seen.",
+      tools:"Python · pandas · scikit-learn · logistic regression · gradient boosting · interactive web front end",
+      outcome:"In progress. The first release will be a Celtics–Knicks matchup explorer: pick a historical game, see the pregame win probability, then reveal the result. No results are published yet.",
+      links:[{label:"Project repository on GitHub",url:"https://github.com/agrawalanshuman/NBA_Analysis_of_the_Atlantic_Division"}] },
+    { id:"cricsecrets", cat:"sports", viz:"cricket", title:"Cric Secrets", status:"In development · venture project",
+      problem:"Chasing 20 off the last 6 balls, who should walk out next? Cricket's biggest calls are still made on gut feel in seconds.",
+      approach:"Cric Secrets is a cricket decision-intelligence project. The idea: bring the match situation, each player's form and matchups, and the conditions together into one estimate of the chance to win for every option a captain has, so the decision is clear in five seconds. It is being built lean, by a very small team working alongside AI agents.",
+      tools:"Python · public ball-by-ball data · win-probability modelling · AI agents",
+      outcome:"Early stage: the idea, data plan and first models are in progress. No results are published yet.", links:[] },
     { id:"football", cat:"sports", viz:"football", title:"Football Player Market Value Model", status:"Academic project · ML",
       problem:"Transfer fees are huge and noisy. Can a model show a club which players the market is undervaluing?",
       approach:"A machine-learning pipeline across European leagues: log-transformed features to tame skewed valuations, SMOTE to rebalance the training data, and Gradient Boosting tested against linear baselines.",
@@ -623,7 +629,7 @@ const CONTENT = {
     { n:"Sports analytics", lvl:"d", pj:["firstcv","soccer","nba","football","rivalry","cricket"], note:"Where the athlete and the analyst meet." },
     { n:"Computer vision", lvl:"d", pj:["firstcv"], note:"OCR, object detection and pose estimation on broadcast video, with OpenCV and YOLO11." },
     { n:"Power BI", lvl:"x", pj:[], note:"Workshop-trained; building fluency." },
-    { n:"XGBoost", lvl:"x", pj:["nba"], note:"Currently exploring alongside Random Forest." },
+    { n:"Gradient boosting", lvl:"x", pj:["nba","football"], note:"Tuning it for NBA pregame win probability, tested on later seasons." },
     { n:"Interactive web apps", lvl:"x", pj:["nba"], note:"Currently exploring, to put models in front of people." }
   ],
   interests: [
@@ -653,11 +659,17 @@ const CASES = {
     results:"Held-out test set (189 players): R² 0.68, mean absolute error 0.098 goals + assists per 90, 19% below the last-season-rate baseline, Spearman 0.82. It matches the xG + xAG baseline analysts use on error and ranks players better. The strongest signals are shot volume, shots on target, xG and touches in the box.",
     limitations:"Two seasons give one season-to-season transition to learn from. The target is a rate, so minutes, injuries and role changes aren't forecast, and team context (a transfer, a new manager) isn't modelled.",
     next:"Add more seasons and test across several transitions, model minutes alongside the rate, and add team-strength context." },
-  nba:{ data:"TODO: name the NBA data source and the seasons used",
-    approach:"A full machine-learning workflow: clean and join the data, engineer features, set a simple baseline, then train Random Forest and XGBoost and compare them with cross-validation before anything goes on the site.",
-    pipeline:["NBA data","Cleaning & features","Baseline model","Random Forest","XGBoost","Cross-validated comparison","Interactive site"],
-    results:"TODO: add the model comparison once validated", limitations:"In development. Sports outcomes are noisy, so a model that looks good on one season can fail on the next. Validation across seasons matters more than one score.",
-    next:"Finish the model comparison, publish the repository, and connect the models to the interactive explorer." },
+  nba:{ data:"Historical NBA game data for the five Atlantic Division teams from public sources such as NBA.com stats. Every feature is computed from games played before tip-off, so nothing from the game itself leaks into the prediction.",
+    approach:"Split by time: train on earlier seasons, test on later ones. Start with home advantage and logistic regression as baselines, then tune gradient boosting and keep it only if it predicts later seasons better and its probabilities stay calibrated.",
+    pipeline:["Game data","Pre-tip-off features","Baseline","Logistic regression","Gradient boosting","Time-based test","Matchup explorer"],
+    results:"Not yet. Results will be published once the model has been tested on seasons it never saw.", limitations:"In development. Sports outcomes are noisy, so a model that looks good on one season can fail on the next. Validation across seasons matters more than one score.",
+    next:"Build the game dataset, compare the models on later seasons, then launch the Celtics–Knicks explorer.", repo:false },
+  cricsecrets:{ data:"Planned: public ball-by-ball cricket data first; richer tracking data later, only with the right permissions.",
+    approach:"Start from the decision a captain faces, estimate the win chance of each option, and test every estimate on matches the model has never seen.",
+    pipeline:["Match situation","Player form & matchups","Conditions","Win-probability model","Option comparison","Clear recommendation"],
+    results:"Not yet. This is an early-stage project; results will be shared when they are tested and ready.",
+    limitations:"Early stage. Many of the signals that matter most (fitness, tracking, team plans) are not public, so the first versions use only open data.",
+    next:"Build the first win-probability model on open data and test it on recent seasons.", repo:false },
   football:{ data:"Player market values and attributes across European football leagues.",
     pipeline:["Player data","Log-transformed features","SMOTE","Linear baselines","Gradient Boosting","Undervalued targets"],
     results:"R² = 0.612, outperforming linear baselines by about 80%. Valuation error reduced by €1.7M per player. 64 undervalued transfer targets surfaced for scouting decisions.",
@@ -1065,7 +1077,7 @@ const VIZ={
     nodes.forEach((nd,i)=>{const nx=pad+i*step,on=px>=nx-4;x.fillStyle=on?'rgba(53,224,255,.16)':'rgba(6,10,19,.9)';x.strokeStyle=on?C.cyan:C.line;x.lineWidth=1.4;x.beginPath();x.arc(nx,y,w<520?16:24,0,7);x.fill();x.stroke();txt(x,nd[0],nx,y+4,on?C.cyan:C.silver,w<520?10:12,'center');txt(x,w<520?nd[1].split(' ')[0]:nd[1],nx,y+(i%2?-36:48),C.ice,w<520?9:10.5,'center')})}
 };
 function renderPList(){const ol=$('#plist');ol.innerHTML='';const list=CONTENT.projects.filter(p=>pFilter==='all'||p.cat===pFilter);if(!list.includes(pSel))pSel=list[0];
-  list.forEach(p=>{const i=CONTENT.projects.indexOf(p)+1;const li=h(`<li><button class="panel" role="tab" type="button" aria-selected="${p===pSel}"><span class="n">P-0${i}</span><span class="t">${esc(p.title)}</span><span class="s">${esc(p.status)}</span></button></li>`);li.firstChild.onclick=()=>{pSel=p;renderPList()};ol.appendChild(li)});renderP()}
+  list.forEach(p=>{const i=CONTENT.projects.indexOf(p)+1;const li=h(`<li><button class="panel" role="tab" type="button" aria-selected="${p===pSel}"><span class="n">P-${String(i).padStart(2,'0')}</span><span class="t">${esc(p.title)}</span><span class="s">${esc(p.status)}</span></button></li>`);li.firstChild.onclick=()=>{pSel=p;renderPList()};ol.appendChild(li)});renderP()}
 let csOpen=false,pSw=0;
 const fmt=(v)=>esc(v||'TODO: add this').replace(/TODO:\s*(.+)$/,'<span class="ph">[ $1 ]</span>');
 function caseHTML(p,all){const rows=[['Problem',p.problem],['Data',p.data],['Approach',p.approach],['Technology',p.tools],['Results',(p.results&&!/^TODO:/.test(p.results))?p.results:p.outcome],['Limitations',p.limitations],['Next steps',p.next],['Why this innings',p.story]];
