@@ -1,0 +1,21 @@
+month,region,product,units,unit_price,revenue
+2026-09,North,Trail Runner Shoes,300,90,27000
+2026-09,South,Trail Runner Shoes,220,90,19800
+2026-09,North,Rain Shell Jacket,120,120,14400
+2026-09,South,Rain Shell Jacket,90,120,10800
+2026-09,North,Daypack 24L,230,45,10350
+2026-09,South,Daypack 24L,170,45,7650
+2026-09,North,Water Bottle,500,12,6000
+2026-09,South,Water Bottle,400,12,4800
+2026-09,North,Wool Socks,350,15,5250
+2026-09,South,Wool Socks,250,15,3750
+2026-10,North,Trail Runner Shoes,310,90,27900
+2026-10,South,Trail Runner Shoes,230,90,20700
+2026-10,North,Rain Shell Jacket,190,120,22800
+2026-10,South,Rain Shell Jacket,145,120,17400
+2026-10,North,Daypack 24L,215,45,9675
+2026-10,South,Daypack 24L,165,45,7425
+2026-10,North,Water Bottle,560,12,6720
+2026-10,South,Water Bottle,440,12,5280
+2026-10,North,Wool Socks,300,15,4500
+2026-10,South,Wool Socks,220,15,3300

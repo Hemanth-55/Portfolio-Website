@@ -1,0 +1,12 @@
+Cric Secrets weekly stand-up — 24 Nov 2026 (demo notes)
+Attendees: Hemi, Tamil CEO, Modeling Scientist, Cricket Strategist, Partnerships Lead, Data Engineer, Red Team
+
+Focus this week: get the Next-Batter Engine demo ready for a first pilot.
+
+- Modeling Scientist will add pace and spin match-ups to the next-batter model by Dec 5.
+- Cricket Strategist to finish the chase-situation library by Dec 1.
+- Partnerships Lead will draft the free pilot offer for the clubs Hemi plays with.
+- Re-play three famous chases with the model for the case studies.
+- Data Engineer will refresh the Cricsheet ball-by-ball data before the weekend.
+- Decision: nothing goes public until Red Team signs off on the numbers.
+- Someone needs to write the one-page demo guide for coaches.

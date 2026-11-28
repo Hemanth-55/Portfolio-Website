@@ -6,6 +6,7 @@
 <title>Cric Secrets HQ · Hemi</title>
 <meta name="description" content="Walk into Cric Secrets HQ: a cricket decision-intelligence company Hemi is building, run by a team of AI agents.">
 <meta name="theme-color" content="#12060F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Cdefs%3E%3ClinearGradient id=%27g%27 x1=%270%27 x2=%271%27%3E%3Cstop offset=%270%27 stop-color=%27%23FF3D7F%27/%3E%3Cstop offset=%271%27 stop-color=%27%23FFC857%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%2312060F%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%279%27 fill=%27url(%23g)%27/%3E%3C/svg%3E" />
 <meta property="og:title" content="Cric Secrets HQ">
 <meta property="og:description" content="A cricket decision-intelligence company run by AI agents. Work in progress, built in the open.">
 <meta property="og:image" content="https://hemanthkumargopi.vercel.app/og.png">
@@ -37,6 +38,9 @@ header>*{pointer-events:auto}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(18,6,15,.6);color:var(--ink);font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:border-color .2s,background .2s}
 .btn:hover{border-color:rgba(255,200,190,.35)}
 .btn.pri{background:var(--magenta);border-color:var(--magenta);color:#12060F}
+.btn.ops{background:var(--sunset);border:0;box-shadow:0 14px 40px -14px rgba(255,61,127,.8);animation:opsGlow 2.8s ease-in-out infinite}
+@keyframes opsGlow{50%{box-shadow:0 14px 46px -10px rgba(255,200,87,.85)}}
+@media (prefers-reduced-motion:reduce){.btn.ops{animation:none}}
 .acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 
 /* staff directory: the accessible way in */
@@ -79,6 +83,7 @@ header>*{pointer-events:auto}
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
+<script src="/hq/pixel-transition.js"></script>
 <div id="loading" aria-hidden="true"><div>CRIC SECRETS HQ</div></div>
 <canvas id="gl" aria-label="3D office of Cric Secrets: AI agents working at their desks. Use the staff directory to visit each agent." role="img"></canvas>
 <div id="labels" aria-hidden="true"></div>
@@ -89,13 +94,13 @@ header>*{pointer-events:auto}
     <p>A cricket decision-intelligence company I'm building, run by a team of AI agents. First question: chasing 20 off 6, who should walk out next?</p>
     <div class="wip mono"><i></i>Work in progress · built in the open</div>
   </div>
-  <div class="acts"><a class="btn" href="/#work">← Portfolio</a><button class="btn" id="tour" type="button">Tour</button><button class="btn pri" id="warroom" type="button">War room</button></div>
+  <div class="acts"><a class="btn" href="/#work">← Portfolio</a><button class="btn" id="tour" type="button">Tour</button><button class="btn" id="warroom" type="button">War room</button><a class="btn pri ops" id="ops" href="/hq/office/" aria-label="Go down to the ops floor: give the agents a job and watch them work">Ops floor ↓</a></div>
 </header>
 
 <nav id="dir" aria-label="Staff directory"><h2><span>Staff directory · 14 people, 13 AI</span></h2><ul id="dirl"></ul></nav>
 
 <aside id="panel" aria-live="polite" aria-label="Agent details"><button class="x" id="px" type="button" aria-label="Close">×</button><div id="pbody"></div></aside>
-<div id="hint" class="mono">Drag to look around · click a desk to meet the agent</div>
+<div id="hint" class="mono">Drag to look around · click a desk to meet the agent · Ops floor to watch them work</div>
 <div id="nogl" role="alert"><div><p style="font-size:18px;margin-bottom:14px">Your browser can't show the 3D office.</p><a class="btn pri" href="/#work">Back to the portfolio</a></div></div>
 
 <script type="module">
@@ -152,6 +157,9 @@ scene.fog = new THREE.Fog('#12060F', 48, 95);
 const camera = new THREE.PerspectiveCamera(SMALL ? 52 : 38, innerWidth / innerHeight, .1, 200);
 const HOME = { pos: new THREE.Vector3(SMALL ? 30 : 26, SMALL ? 30 : 22, SMALL ? 30 : 26), tgt: new THREE.Vector3(0, 0, 0) };
 camera.position.copy(HOME.pos);
+// Arriving through the portfolio portal: start far out over the city and glide in.
+let FROM_PORTAL = false; try { FROM_PORTAL = sessionStorage.getItem('hq-portal') === '1'; sessionStorage.removeItem('hq-portal') } catch (e) { /* ignore */ }
+if (FROM_PORTAL && !RM) camera.position.copy(HOME.pos.clone().multiplyScalar(2.1).add(new THREE.Vector3(0, 14, 0)));
 const controls = new OrbitControls(camera, canvas);
 controls.target.copy(HOME.tgt); controls.enableDamping = true; controls.dampingFactor = .07;
 controls.minDistance = 8; controls.maxDistance = 60; controls.maxPolarAngle = 1.32; controls.minPolarAngle = .35;
@@ -379,6 +387,16 @@ addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; cam
 (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { [wallTex, roadTex, sign].forEach(tx => { const { x, c, draw } = tx.userData; x.clearRect(0, 0, c.width, c.height); draw(x, c.width, c.height); tx.needsUpdate = true }) });
 loop();
 setTimeout(() => $('#loading').classList.add('done'), 500);
+if (FROM_PORTAL && !RM) setTimeout(() => flyTo(HOME.pos.clone(), HOME.tgt.clone(), 2.4), 380);
+
+// Down to the ops floor: dolly toward the war-room table, then the pixel transition.
+$('#ops').addEventListener('click', ev => {
+  if (!window.pixelGo || ev.metaKey || ev.ctrlKey) return;
+  ev.preventDefault(); stopTour(); close();
+  const r = ev.currentTarget.getBoundingClientRect();
+  flyTo(camera.position.clone().lerp(controls.target, .55), controls.target.clone(), .9);
+  setTimeout(() => window.pixelGo('/hq/office/', { x: r.left + r.width / 2, y: r.top + r.height / 2, label: 'OPS FLOOR' }), RM ? 0 : 260);
+});
 setTimeout(() => { $('#hint').style.opacity = 0 }, 9000);
 const deep = location.hash.slice(1); if (deep && AGENTS.some(a => a.id === deep)) setTimeout(() => select(deep), 700);
 </script>

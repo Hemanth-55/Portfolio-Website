@@ -1,0 +1,21 @@
+month,shop,product,units,unit_price,revenue
+2026-09,Boston,English Willow Bat,34,350,11900
+2026-09,Charlotte,English Willow Bat,26,350,9100
+2026-09,Boston,Batting Helmet,40,90,3600
+2026-09,Charlotte,Batting Helmet,30,90,2700
+2026-09,Boston,Batting Gloves,60,55,3300
+2026-09,Charlotte,Batting Gloves,50,55,2750
+2026-09,Boston,Leg Pads,50,80,4000
+2026-09,Charlotte,Leg Pads,40,80,3200
+2026-09,Boston,Leather Ball (pack),170,25,4250
+2026-09,Charlotte,Leather Ball (pack),130,25,3250
+2026-10,Boston,English Willow Bat,36,350,12600
+2026-10,Charlotte,English Willow Bat,28,350,9800
+2026-10,Boston,Batting Helmet,85,90,7650
+2026-10,Charlotte,Batting Helmet,65,90,5850
+2026-10,Boston,Batting Gloves,55,55,3025
+2026-10,Charlotte,Batting Gloves,45,55,2475
+2026-10,Boston,Leg Pads,55,80,4400
+2026-10,Charlotte,Leg Pads,45,80,3600
+2026-10,Boston,Leather Ball (pack),140,25,3500
+2026-10,Charlotte,Leather Ball (pack),110,25,2750

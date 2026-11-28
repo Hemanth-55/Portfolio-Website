@@ -9,6 +9,7 @@ Claude: read this file, then `notes/`, at the start of every session.
 - All text lives in two objects near the top of the script: `CONTENT` (story, experience, skills, contact) and `CASES` (project case studies). Change words there, not in the layout.
 - Features: HEMI fly-through entrance into a layered avatar hero (media/hemi-cut, hemi-bg; sunset palette), canvas particle engine (2,600 desktop / 1,300 mobile), five story chapters, Immersive and Recruiter modes, project universe, analytics playground (soccer scout on real model output), ⌘K command menu, phone edition.
 - `hq/index.html`: Cric Secrets HQ, a 3D office of the AI-agent company (Three.js 0.160 from jsDelivr; the only page with a dependency). Public content only: idea, roles, roadmap, held-out model results.
+- `hq/office/`: the Cric Secrets ops floor, a pixel-art office where visitors give the AI agents a job. It is BUILT output: edit `cric-office/` (React + TS + Vite) and run `npm run build:portfolio`. `hq/pixel-transition.js` is the shared pixel transition.
 - Each module runs in its own error boundary. Keep it that way.
 
 ## Quality bar (non-negotiable)
@@ -34,7 +35,8 @@ Claude: read this file, then `notes/`, at the start of every session.
 - `notes/session-log.md`: build log, newest first
 - `notes/backlog.md`: ideas, to-dos, done
 - `notes/decisions.md`: lasting design and tech decisions
-- `.vercelignore` keeps `notes/`, `.claude/` and `CLAUDE.md` off the live site. They're still public on GitHub, so never write secrets here.
+- `website-docs/`: Hemi's build notebook. At the end of every session add a dated write-up (ask, steps, tools/skills, problems and fixes, verification), same shape as file 02
+- `.vercelignore` keeps `notes/`, `.claude/`, `CLAUDE.md`, `website-docs/` and `cric-office/` off the live site. They're still public on GitHub, so never write secrets here.
 
 ## Related
 - Hemi's master context repo: https://github.com/Hemanth-55/Tamil-

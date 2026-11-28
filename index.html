@@ -571,7 +571,10 @@ body.flying .herocopy>*:nth-child(4){transition-delay:1.12s}body.flying .herocop
 .hqstats div{background:rgba(24,8,20,.82);padding:16px 18px}
 .hqstats b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:34px;line-height:1;background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hqstats span{display:block;margin-top:6px;color:var(--mute);font-size:13px;line-height:1.4}
-@media (max-width:700px){.hqstats{grid-template-columns:minmax(0,1fr)}.pcta{left:16px;bottom:14px}.portal{aspect-ratio:4/3}}
+.hqops{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:14px 0;padding:16px 20px;border-radius:16px;border:1px solid rgba(255,200,190,.16);background:rgba(24,8,20,.82);text-decoration:none;transition:border-color .3s,transform .3s var(--eo)}
+.hqops:hover,.hqops:focus-visible{border-color:rgba(255,200,87,.55);transform:translateY(-2px)}
+.hqops .mono{color:var(--gold);font-size:11px;letter-spacing:.14em}.hqops b{font:700 16px var(--body);color:#FFF3EA}.hqops small{color:var(--mute);font-size:12px;margin-left:auto}
+@media (max-width:700px){.hqops small{margin-left:0}.hqstats{grid-template-columns:minmax(0,1fr)}.pcta{left:16px;bottom:14px}.portal{aspect-ratio:4/3}}
 </style>
 
 </head>
@@ -700,7 +703,7 @@ const CONTENT = {
       approach:"A ball-by-ball win-probability model for chases, trained on matches before 2024 and tested once on 2024 onward, then a next-batter recommender that compares the win chance of sending each available batter. The company itself runs on a team of AI agents (strategy, data, models, product, partnerships, security) that I supervise through Tamil CEO.",
       tools:"Python · pandas · scikit-learn (gradient boosting, logistic regression) · Cricsheet open data · AI agents · Three.js (the HQ)",
       outcome:"Win probability: AUC 0.915 on 2,451 chases it never saw (0.973 in the last 4 overs), and well calibrated. Next batter: teams already send its top pick 60% of the time; when they don't, its pick is worth +1.9 win-percentage points on average. A decision aid, not an oracle yet.",
-      links:[{label:"Walk into the HQ (3D office)",url:"/hq/"}] },
+      links:[{label:"Walk into the HQ (3D office)",url:"/hq/"},{label:"Give the agents a job (ops floor)",url:"/hq/office/"}] },
     { id:"tamil", cat:"ai", viz:"agents", title:"Tamil: an AI Agent Team", status:"AI agents · running daily",
       problem:"A front office runs on research, news and reporting that eat hours every week. Can one analyst run that work like a full team, at zero running cost, without losing control of what goes out?",
       approach:"A CEO agent routes every request to a specialist: a Portfolio agent (idea → tested notebook → repository → live demo), an AI News agent and a Job Hunter. The news agent runs on a free GitHub Actions schedule: it collects RSS feeds, groups stories several newsrooms report, keeps only verified ones and sends a briefing to WhatsApp.",
@@ -971,8 +974,9 @@ scene('lab','Analytics playground',`<div class="wide">
 scene('hq','Cric Secrets HQ',`<div class="wide">
   <div class="mono kick rv">World · Cric Secrets HQ</div>
   <h2 class="rv">Walk into the company I'm building</h2>
-  <p class="rv">Cric Secrets is a cricket decision-intelligence company in the making. Its first question: chasing 20 off 6, who should walk out next? It runs on a team of 13 AI agents and me. Step inside the office, meet every agent and see what they are working on.</p>
+  <p class="rv">Cric Secrets is a cricket decision-intelligence company in the making. Its first question: chasing 20 off 6, who should walk out next? It runs on a team of 13 AI agents and me. Step inside the office and meet every agent. Then go down to the ops floor, hand the team a job and watch it move desk to desk until a finished document lands on your desk.</p>
   <a class="portal rv" href="/hq/" aria-label="Enter Cric Secrets HQ, a 3D office"><img src="media/hq.webp" alt="3D office of Cric Secrets at sunset: agents at their desks around a war-room table" loading="lazy"><span class="pglow"></span><span class="pcta"><b>Enter the HQ</b><small class="mono">3D · drag to look around · tap a desk</small></span></a>
+  <a class="hqops rv" href="/hq/office/" data-hq-go aria-label="Go straight to the ops floor: give the agents a job"><span class="mono">Ops floor</span><b>Give the agents a job →</b><small>Pixel-art office · runs in your browser</small></a>
   <div class="hqstats rv"><div><b>13</b><span>AI agents, one human founder</span></div><div><b>0.915</b><span>AUC of the win-probability model on unseen chases</span></div><div><b>1 / 6</b><span>Roadmap phase: first models done, demo next</span></div></div>
 </div>`,{shape:'network',ox:0,s:1.3,tilt:.3,a:.25,nav:'HQ'});
 
@@ -1571,5 +1575,33 @@ function loop(now){hud(now);
 requestAnimationFrame(loop);
 </script>
 
+<script>
+/* Cric Secrets HQ entrances: the portal card grows to fill the screen and hands off to the HQ's own title card;
+   the ops-floor link hands off to the pixel transition on /hq/office/. Own error boundary; reduced motion = plain link. */
+(function(){try{
+  var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function title(text){var t=document.createElement('div');t.className='pz-title';t.setAttribute('aria-hidden','true');t.textContent=text;t.style.cssText='position:fixed;inset:0;z-index:100000;display:grid;place-items:center;pointer-events:none;font-family:Anton,Impact,sans-serif;font-size:clamp(40px,8vw,90px);letter-spacing:.02em;background:linear-gradient(100deg,#FF3D7F,#FF7A5C 45%,#FFC857);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0';document.body.appendChild(t);return t}
+  function go(a,url,label){
+    var img=a.querySelector('img'),r=a.getBoundingClientRect();
+    var o=document.createElement('div');o.className='pz';o.setAttribute('aria-hidden','true');
+    o.style.cssText='position:fixed;left:'+r.left+'px;top:'+r.top+'px;width:'+r.width+'px;height:'+r.height+'px;z-index:99999;border-radius:22px;overflow:hidden;background:#12060F '+(img?'url('+(img.currentSrc||img.src)+') center/cover':'')+';will-change:transform;pointer-events:none';
+    var veil=document.createElement('div');veil.style.cssText='position:absolute;inset:0;background:#12060F;opacity:0';o.appendChild(veil);document.body.appendChild(o);
+    var s=Math.max(innerWidth/r.width,innerHeight/r.height)*1.08,dx=innerWidth/2-(r.left+r.width/2),dy=innerHeight/2-(r.top+r.height/2);
+    o.animate([{transform:'none',borderRadius:'22px'},{transform:'translate('+dx+'px,'+dy+'px) scale('+s+')',borderRadius:'0px'}],{duration:950,easing:'cubic-bezier(.7,0,.16,1)',fill:'forwards'});
+    veil.animate([{opacity:0},{opacity:1}],{duration:420,delay:620,easing:'ease-in',fill:'forwards'});
+    title(label).animate([{opacity:0,transform:'scale(1.06)'},{opacity:1,transform:'none'}],{duration:380,delay:820,easing:'ease-out',fill:'forwards'});
+    setTimeout(function(){location.href=url},1250);
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a.portal[href^="/hq/"],a[data-hq-go]');
+    if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
+    var url=a.getAttribute('href'),ops=url.indexOf('/hq/office')===0;
+    try{ if(ops)sessionStorage.setItem('px-in',JSON.stringify({t:Date.now(),label:'OPS FLOOR'})); else sessionStorage.setItem('hq-portal','1') }catch(_){}
+    if(RM)return;
+    e.preventDefault();go(a,url,ops?'OPS FLOOR':'CRIC SECRETS HQ');
+  },true);
+  addEventListener('pageshow',function(ev){if(ev.persisted)document.querySelectorAll('.pz,.pz-title').forEach(function(n){n.remove()})});
+}catch(err){console.warn('HQ entrance disabled',err)}})();
+</script>
 </body>
 </html>

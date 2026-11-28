@@ -11,3 +11,9 @@
 - Cric Secrets is public now (Hemi's call): project case study with real held-out results + a 3D HQ office at /hq/. Never publish security details, credentials or private repo internals (2026-11-27)
 - Batting clips re-encoded with the top 128 px cropped to remove broadcaster overlays; footage credit kept in the film room (2026-11-27)
 - Cursor is a cricket ball (rolls with movement, gold ring over clickables); native cursor kept on text inputs and touch (2026-11-27)
+- Ops floor (`/hq/office/`) is a separately built page (React + Vite) from `cric-office/`, like the HQ's Three.js dependency; `index.html` stays framework-free. Commit both the source and the build (2026-11-27)
+- The ops floor runs only in the visitor's browser: built-in templates, no AI calls, no uploads, no server. Live AI is the local edition on Hemi's Mac (2026-11-27)
+- One codebase, two editions, switched by `VITE_EDITION` in `cric-office/src/edition.ts` (2026-11-27)
+- Transitions hand off through sessionStorage flags (`hq-portal`, `px-in`); reduced motion = plain links (2026-11-27)
+- Every session is also written up in `website-docs/` so Hemi can explain and recreate the work (2026-11-27)
+
