@@ -3,7 +3,8 @@
 ## 2026-11-27 (night): Cric Secrets ops floor + transitions (branch feat/cric-office)
 - Done: the Agent Office (pixel-art office where AI agents take a job and return a finished document) is now the **ops floor** under the 3D HQ at `/hq/office/`, cast as Tamil CEO, Research Analyst, Modeling Scientist, Brand & Content and Red Team. Source in `cric-office/` (React + TS + Vite; the same code runs as the local Ollama app). New transitions: portfolio portal zoom → HQ fly-in; HQ → pixel wave → ops floor and back. 14 tests pass; desktop, mobile and reduced-motion verified in a browser. New `website-docs/` notebook records every step.
 - Branch / preview: feat/cric-office (from feat/v2); Vercel preview after push.
-- Next: Hemi reviews the preview → merge into feat/v2, then main. Try the local Agent Office with a real Ollama model.
+- Live: Hemi approved; main fast-forwarded to feat/cric-office (includes feat/v2) at 10:05 PM. New short link **https://hemi5.vercel.app** (Vercel project domain, added via the Vercel connector; hemi.vercel.app was taken by another account).
+- Next: Try the local Agent Office with a real Ollama model. Open asks: sound button (official Spotify embed of Badass vs royalty-free loop; the track itself can't be hosted) and a "promotion studio".
 
 ## 2026-11-27: Sunset edition with avatar entrance (branch feat/v2)
 - Done: retheme to the sunset portrait palette; fly-through-HEMI entrance; layered avatar hero (parallax, holographic rings, scan line, embers); hero and copy reframed to AI × Sports Consulting; new project "Tamil: an AI Agent Team" with preview animation, AI-agents filter and skill links (AI agents, Automation, Gen AI, Python, Data visualization).

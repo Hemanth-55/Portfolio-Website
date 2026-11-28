@@ -52,12 +52,19 @@ Built from Hemi's spec, in this order:
    - **Bugs found and fixed:** name tags rendered white-on-white under the dark theme; the mobile header was cramped; the demo total equalled the helmet change (confusing), so the data was nudged; the ops floor had no tab icon.
 10. **Tests:** 14/14 passing (`npm test` in `cric-office/`).
 
+### Part 6: going live with a short link (10:01–10:06 PM)
+- Hemi asked for "one solid link". `add_project_domain` (Vercel connector) tried `hemi.vercel.app`, but it's owned by another account. `hemi5.vercel.app` (jersey 5) was free and verified instantly.
+- At first hemi5 showed the *old* live site, because the new work was still on the preview branch. Hemi pointed to the preview, so: `git fetch` main, confirmed main was an ancestor of the branch (a fast-forward, nothing lost), then `git push origin HEAD:main`. Vercel deployed in about 20 s.
+- Verified on the public link: `/`, `/hq/` and `/hq/office/` load with zero console errors; `website-docs/` and `cric-office/` return 404 (kept private by `.vercelignore`).
+- **Music request (Badass, Leo, Anirudh):** the track can't be hosted on the site (it's copyrighted, and browsers block sound that starts by itself). The option offered: a "♪ Sound" button that plays the official Spotify embed, or a royalty-free loop. Waiting on Hemi's choice.
+- **Lesson:** when a new short link is created, point it at the version the person is actually looking at, and say plainly which version it shows.
+
 ## Decisions made tonight
 - The ops floor is a separate built page under `/hq/office/`, like the HQ has its own dependency. `index.html` stays framework-free.
 - The ops floor runs **only** in the visitor's browser: no AI calls, no uploads, no server. Live AI is the local edition on Hemi's Mac.
 - The original Agent Office source and the ops floor are **one codebase** (`cric-office/`), switched by `VITE_EDITION`.
 
 ## Next
-- Hemi reviews the preview of `feat/cric-office`, then it's merged into `feat/v2` / `main`.
+- ✅ Live at https://hemi5.vercel.app (merged to main 27 Nov, 10:05 PM).
 - Run the local Agent Office with a real Ollama model (see 03) and note how the model behaves.
 - Optional: record a 15-second reel of the full journey for Instagram and LinkedIn (see `prompts/launch-kit-linkedin-instagram.md`).

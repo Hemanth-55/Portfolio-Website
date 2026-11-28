@@ -1,7 +1,7 @@
 # 01 · Site map
 
 ```
-hemanthkumargopi.vercel.app
+hemi5.vercel.app  (short link; hemanthkumargopi.vercel.app also works)
 │
 ├── /                 index.html          The portfolio (one hand-written file, no build step)
 │     └── #hq scene   "Walk into the company I'm building"
